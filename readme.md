@@ -69,6 +69,27 @@ To execute both unit tests and functional tests, run
 
 All functional tests run in real Java EE container so the commands above will download JBoss AS 7.1.1.Final from a Maven repository, start the container, deploy the application, start Firefox, and execute the tests.
 
+## Run the tests with different browsers
+
+All functional tests run by default with Firefox which is on PATH. To select a different browser either edit arquillian.xml property browserCapabilities or set an environment property. Current supported values are:
+
+* android
+* chrome
+* firefox (set in arquillian.xml)
+* htmlUnit
+* internetExplorer
+* iphone
+* opera
+
+For instance, to run tests with Opera, run
+
+    mvn clean verify -P jbossas-managed-71,all-tests -D arquillian.webdriver.browser.capabilities=opera
+
+To run tests with Android emulator, you first need to [start Android emulator](http://developer.android.com/tools/help/emulator.html), install [Selenium Server](http://code.google.com/p/selenium/downloads/list) and lauch Selenium Server application in emulator. After that you need to forward TCP port and lauch tests:
+
+    <ANDROID_SDK_HOME>/platform-tools/adb forward tcp:4444 tcp:8080
+    mvn clean verify -P jbossas-managed-71,all-tests -D arquillian.webdriver.browser.capabilities=android
+
 ## Credits
 
 The application uses data provided by [European Central Bank](http://www.ecb.europa.eu).
