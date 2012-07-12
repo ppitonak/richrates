@@ -62,7 +62,6 @@ public abstract class AbstractWebDriverTest<P extends Page> extends Arquillian {
         "./target/"));
     protected File failuresOutputDir = new File(mavenProjectBuildDirectory, "failures");
 
-    // TODO include manifest.mf with org.slf4j dependency
     @Deployment(testable = false)
     public static WebArchive createTestArchive() {
         return ShrinkWrap.create(MavenImporter.class, "richrates.war").loadEffectivePom("pom.xml").importBuildOutput()
