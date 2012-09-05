@@ -99,6 +99,7 @@
         <version.jbossas-70>7.0.2.Final</version.jbossas-70>
         <version.jbossas-71>7.1.1.Final</version.jbossas-71>
         <version.selenium>2.25.0</version.selenium>
+        <version.opera.driver>0.18</version.opera.driver>
         <version.seam.faces>3.1.0.Final</version.seam.faces>
         <version.seam.international>3.1.0.Final</version.seam.international>
         <version.prettyfaces>3.3.3</version.prettyfaces>
@@ -337,6 +338,7 @@
         <dependency>
             <groupId>com.opera</groupId>
             <artifactId>operadriver</artifactId>
+            <version>${version.opera.driver}</version>
             <scope>test</scope>
         </dependency>
         
