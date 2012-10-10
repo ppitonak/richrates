@@ -30,6 +30,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -54,13 +55,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 @Listeners(ConsoleStatusTestListener.class)
-public abstract class AbstractWebDriverTest<P extends Page> extends Arquillian {
+public abstract class AbstractWebDriverTest<P extends AbstractPage> extends Arquillian {
 
     @Drone
     public WebDriver driver;
     @ArquillianResource
     private URL deployedRoot;
-    private P page;
+    @Page
+    protected P page;
     protected File mavenProjectBuildDirectory = new File(System.getProperty("maven.project.build.directory",
         "./target/"));
     protected File failuresOutputDir = new File(mavenProjectBuildDirectory, "failures");
@@ -83,19 +85,13 @@ public abstract class AbstractWebDriverTest<P extends Page> extends Arquillian {
 
     @BeforeMethod(dependsOnGroups = { "arquillian" })
     public void preparePage() throws MalformedURLException {
-
-        page = createPage(getRoot());
         if (driver instanceof AndroidDriver) {
-            driver.get(getPage().getUrl().toString().replace("faces", "faces/mobile"));
+            driver.get(getRoot() + page.getURL().replace("faces", "faces/mobile"));
         } else {
-            driver.get(getPage().getUrl().toString());
+            driver.get(getRoot() + page.getURL());
         }
         FieldDecorator decoraor = new StaleReferenceAwareFieldDecorator(new DefaultElementLocatorFactory(driver), 5);
         PageFactory.initElements(decoraor, page);
-    }
-
-    protected P getPage() {
-        return page;
     }
 
     protected WebDriver getWebDriver() {
@@ -112,8 +108,6 @@ public abstract class AbstractWebDriverTest<P extends Page> extends Arquillian {
             return deployedRoot;
         }
     }
-
-    protected abstract P createPage(URL root);
 
     @AfterMethod(alwaysRun = true, groups = "arquillian")
     public void handleTestError(ITestResult result) {

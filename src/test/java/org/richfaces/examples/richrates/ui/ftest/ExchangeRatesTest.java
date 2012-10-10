@@ -21,14 +21,13 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui.ftest;
 
-import java.net.URL;
+import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.richfaces.examples.richrates.ui.AbstractWebDriverTest;
 import org.testng.annotations.Test;
-import static org.testng.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:jpapouse@redhat.com">Jan Papousek</a>
@@ -42,27 +41,21 @@ public class ExchangeRatesTest extends AbstractWebDriverTest<ExchangeRatesPage>{
         }
         @Override
         public Boolean apply(WebDriver arg0) {
-            return getPage().getCurrentPageNumber() == pageNumber;
+            return page.getCurrentPageNumber() == pageNumber;
         }
-        
     }
     
     @Test
     public void testInit() {
-        assertEquals(getPage().getCurrentPageNumber(), 1);
+        assertEquals(page.getCurrentPageNumber(), 1);
     }
     
     @Test
     public void testNextAndPrevious() {
         WebDriverWait wait = new WebDriverWait(getWebDriver(), 5);
-        getPage().next();
+        page.next();
         wait.until(new CurrentPageNumberEquals(2));
-        getPage().previous();
+        page.previous();
         wait.until(new CurrentPageNumberEquals(1));
-    }
-    
-    @Override
-    protected ExchangeRatesPage createPage(URL root) {
-        return new ExchangeRatesPage(root);
     }
 }

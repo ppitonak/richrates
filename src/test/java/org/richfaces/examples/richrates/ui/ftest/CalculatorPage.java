@@ -21,9 +21,6 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui.ftest;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -42,10 +39,6 @@ public class CalculatorPage extends AbstractPage {
     @FindBy(id = "calculator:calculateButton")
     private WebElement submitButton;
 
-    public CalculatorPage(URL root) {
-        super(root);
-    }
-
     public String getResult() {
         return resultOutput.getText();
     }
@@ -61,12 +54,7 @@ public class CalculatorPage extends AbstractPage {
         webDriverWait.until(new TextNotEquals(resultOutput, ""));
     }
 
-    protected URL createUrl(URL root) {
-        try {
-            return new URL(root, "faces/calculator.xhtml");
-        } catch (MalformedURLException e) {
-            throw new IllegalStateException(e);
-        }
+    public String getURL() {
+        return "faces/calculator.xhtml";
     }
-
 }

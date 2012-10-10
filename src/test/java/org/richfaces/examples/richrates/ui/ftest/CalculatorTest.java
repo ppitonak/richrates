@@ -21,33 +21,26 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui.ftest;
 
-import java.net.URL;
-
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.richfaces.examples.richrates.ui.AbstractWebDriverTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * @author <a href="mailto:ppitonak@redhat.com">Pavol Pitonak</a>
+ * @author <a href="https://community.jboss.org/people/ppitonak">Pavol Pitonak</a>
  * @since 4.2.0
  */
 public class CalculatorTest extends AbstractWebDriverTest<CalculatorPage> {
 
     @Test
     public void testCalculate() {
-        getPage().setAmount(33);
-        getPage().waitUntilResultOutputIsNotEmpty(new WebDriverWait(getWebDriver(), 5));
+        page.setAmount(33);
+        page.waitUntilResultOutputIsNotEmpty(new WebDriverWait(getWebDriver(), 5));
         
-        String result = getPage().getResult();
+        String result = page.getResult();
 
         Assert.assertTrue(result.matches("33.000 EUR = \\d+\\.\\d{3} USD"),
             "Result should start match expression \"33.000 EUR = \\d+\\.\\d{3} USD\".");
         Assert.assertNotEquals(result, "33.000 EUR = 0.000 USD", "Exchange rate for USD should not be 0.");
-    }
-
-    @Override
-    protected CalculatorPage createPage(URL host) {
-        return new CalculatorPage(host);
     }
 }

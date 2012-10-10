@@ -21,9 +21,6 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui.ftest;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.richfaces.examples.richrates.ui.AbstractPage;
@@ -51,18 +48,8 @@ public class ExchangeRatesPage extends AbstractPage {
     public void previous() {
         previousButton.click();
     }
-    
-    public ExchangeRatesPage(URL root) {
-        super(root);
-    }
 
-    @Override
-    protected URL createUrl(URL root) {
-        try {
-            return new URL(root, "faces/table.xhtml");
-        } catch (MalformedURLException e) {
-            throw new IllegalStateException(e);
-        }
+    public String getURL() {
+        return "faces/table.xhtml";
     }
-
 }

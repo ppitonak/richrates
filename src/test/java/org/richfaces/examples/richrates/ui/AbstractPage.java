@@ -21,29 +21,10 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui;
 
-import java.net.URL;
-
-import org.apache.commons.lang.Validate;
-
 /**
  * @author <a href="mailto:jpapouse@redhat.com">Jan Papousek</a>
  */
-public abstract class AbstractPage implements Page {
+public abstract class AbstractPage {
 
-    private URL root;
-    private URL url;
-    
-    public AbstractPage(URL root) {
-        Validate.notNull(root);
-        this.root = root;
-    }
-    
-    public URL getUrl() {
-        if (url == null) {
-            url = createUrl(root);
-        }
-        return url;
-    }
-    
-    abstract protected URL createUrl(URL root);
+    abstract public String getURL();
 }
