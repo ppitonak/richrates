@@ -21,7 +21,6 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui.ftest;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.richfaces.examples.richrates.ui.AbstractWebDriverTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -35,7 +34,7 @@ public class CalculatorTest extends AbstractWebDriverTest<CalculatorPage> {
     @Test
     public void testCalculate() {
         page.setAmount(33);
-        page.waitUntilResultOutputIsNotEmpty(new WebDriverWait(getWebDriver(), 5));
+        page.waitUntilResultOutputIsNotEmpty();
         
         String result = page.getResult();
 

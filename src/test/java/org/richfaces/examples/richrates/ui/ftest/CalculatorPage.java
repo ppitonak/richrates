@@ -21,11 +21,10 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui.ftest;
 
+import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.richfaces.examples.richrates.ui.AbstractPage;
-import org.richfaces.examples.richrates.ui.TextNotEquals;
 
 /**
  * @author <a href="mailto:jpapouse@redhat.com">Jan Papousek</a>
@@ -50,8 +49,8 @@ public class CalculatorPage extends AbstractPage {
         submitButton.click();
     }
 
-    public void waitUntilResultOutputIsNotEmpty(WebDriverWait webDriverWait) {
-        webDriverWait.until(new TextNotEquals(resultOutput, ""));
+    public void waitUntilResultOutputIsNotEmpty() {
+        Graphene.waitAjax().until(Graphene.element(resultOutput).not().textEquals(""));
     }
 
     public String getURL() {
