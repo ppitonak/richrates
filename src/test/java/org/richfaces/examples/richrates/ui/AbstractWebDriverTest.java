@@ -33,8 +33,9 @@ import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenImporter;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.test.selenium.listener.ConsoleStatusTestListener;
 import org.jboss.test.selenium.pagefactory.StaleReferenceAwareFieldDecorator;
 import org.jboss.test.selenium.utils.testng.TestInfo;
@@ -45,6 +46,8 @@ import org.openqa.selenium.android.AndroidDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.FieldDecorator;
+import org.richfaces.examples.richrates.CalculatorBean;
+import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -64,8 +67,18 @@ public abstract class AbstractWebDriverTest<P extends Page> extends Arquillian {
 
     @Deployment(testable = false)
     public static WebArchive createTestArchive() {
-        return ShrinkWrap.create(MavenImporter.class, "richrates.war").loadEffectivePom("pom.xml").importBuildOutput()
-            .as(WebArchive.class);
+        File[] deps = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeDependencies().as(File.class);
+        WebArchive war = ShrinkWrap.create(WebArchive.class, "richrates.war")
+            .addPackages(false, CalculatorBean.class.getPackage(), ExchangeRates.class.getPackage())
+            .addAsLibraries(deps);
+
+        war.merge(ShrinkWrap.create(ExplodedImporter.class, "tmp1.war").importDirectory("src/main/webapp")
+            .as(WebArchive.class));
+        war.merge(
+            ShrinkWrap.create(ExplodedImporter.class, "tmp2.war").importDirectory("src/main/resources")
+                .as(WebArchive.class), "WEB-INF/classes");
+
+        return war;
     }
 
     @BeforeMethod(dependsOnGroups = { "arquillian" })
