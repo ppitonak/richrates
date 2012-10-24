@@ -93,7 +93,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <version.richfaces>4.3.0.20120802-M1</version.richfaces>
-        <version.arquillian-core>1.0.2.Final</version.arquillian-core>
+        <version.arquillian-core>1.0.3.Final</version.arquillian-core>
         <version.arquillian-drone>1.1.0.CR3</version.arquillian-drone>
         <version.arquillian.graphene>2.0.0.Alpha3-SNAPSHOT</version.arquillian.graphene>
         <version.shrinkwrap.resolver>2.0.0-alpha-4</version.shrinkwrap.resolver>
