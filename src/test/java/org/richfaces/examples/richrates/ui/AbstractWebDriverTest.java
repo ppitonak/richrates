@@ -38,15 +38,11 @@ import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.test.selenium.listener.ConsoleStatusTestListener;
-import org.jboss.test.selenium.pagefactory.StaleReferenceAwareFieldDecorator;
 import org.jboss.test.selenium.utils.testng.TestInfo;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.android.AndroidDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
-import org.openqa.selenium.support.pagefactory.FieldDecorator;
 import org.richfaces.examples.richrates.CalculatorBean;
 import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.testng.ITestResult;
@@ -90,8 +86,6 @@ public abstract class AbstractWebDriverTest<P extends AbstractPage> extends Arqu
         } else {
             driver.get(getRoot() + page.getURL());
         }
-        FieldDecorator decoraor = new StaleReferenceAwareFieldDecorator(new DefaultElementLocatorFactory(driver), 5);
-        PageFactory.initElements(decoraor, page);
     }
 
     protected WebDriver getWebDriver() {
