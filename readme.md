@@ -13,9 +13,9 @@ navigation, View Declaration Language and JSF2's Ajax tag.
 
 ## Requirements
 
-* Apache Maven 3.0.3 or newer
+* Apache Maven 3.0.4 or newer
 * OpenJDK 6 or Sun JDK 6 or newer
-* JBoss AS 7.0.2 or newer
+* JBoss AS 7.1.1 or newer
 
 ## Start JBoss AS 7 with the web profile
 

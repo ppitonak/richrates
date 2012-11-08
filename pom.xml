@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<!-- JBoss, Home of Professional Open Source Copyright 2010-2011, Red Hat, 
+	<!-- JBoss, Home of Professional Open Source Copyright 2010-2012, Red Hat, 
 		Inc. and individual contributors by the @authors tag. See the copyright.txt 
 		in the distribution for a full listing of individual contributors. This is 
 		free software; you can redistribute it and/or modify it under the terms of 
@@ -97,7 +97,6 @@
         <version.arquillian-drone>1.1.0.Final</version.arquillian-drone>
         <version.arquillian.graphene>2.0.0.Alpha3-SNAPSHOT</version.arquillian.graphene>
         <version.shrinkwrap.resolver>2.0.0-alpha-4</version.shrinkwrap.resolver>
-        <version.jbossas-70>7.0.2.Final</version.jbossas-70>
         <version.jbossas-71>7.1.1.Final</version.jbossas-71>
         <version.selenium>2.26.0</version.selenium>
         <version.opera.driver>0.18</version.opera.driver>
@@ -105,7 +104,6 @@
         <version.seam.international>3.1.0.Final</version.seam.international>
         <version.prettyfaces>3.3.3</version.prettyfaces>
 
-        <home.jbossas-70>${project.build.directory}/jboss-as-${version.jbossas-70}</home.jbossas-70>
         <home.jbossas-71>${project.build.directory}/jboss-as-${version.jbossas-71}</home.jbossas-71>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
@@ -480,17 +478,6 @@
             </dependencies>
         </profile>
         <profile>
-            <id>jbossas-remote-70</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
-                    <version>${version.jbossas-70}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
             <id>jbossas-managed-71</id>
             <dependencies>
                 <dependency>
@@ -531,53 +518,6 @@
                         <configuration>
                             <environmentVariables>
                                 <JBOSS_HOME>${home.jbossas-71}</JBOSS_HOME>
-                            </environmentVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>jbossas-managed-70</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-managed</artifactId>
-                    <version>${version.jbossas-70}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.jboss.as</groupId>
-                                            <artifactId>jboss-as-dist</artifactId>
-                                            <version>${version.jbossas-70}</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <environmentVariables>
-                                <JBOSS_HOME>${home.jbossas-70}</JBOSS_HOME>
                             </environmentVariables>
                         </configuration>
                     </plugin>
