@@ -83,12 +83,12 @@ All functional tests run by default with Firefox which is on PATH. To select a d
 
 For instance, to run tests with Opera, run
 
-    mvn clean verify -P jbossas-managed-71,all-tests -D arquillian.webdriver.browser.capabilities=opera
+    mvn clean verify -P jbossas-managed-71,all-tests -D arq.extension.webdriver.browserCapabilities=opera
 
 To run tests with Android emulator, you first need to [start Android emulator](http://developer.android.com/tools/help/emulator.html), install [Selenium Server](http://code.google.com/p/selenium/downloads/list) and lauch Selenium Server application in emulator. After that you need to forward TCP port and lauch tests:
 
     <ANDROID_SDK_HOME>/platform-tools/adb forward tcp:4444 tcp:8080
-    mvn clean verify -P jbossas-managed-71,all-tests -D arquillian.webdriver.browser.capabilities=android
+    mvn clean verify -P jbossas-managed-71,all-tests -D arq.extension.webdriver.browserCapabilities=android
 
 ## Credits
 
