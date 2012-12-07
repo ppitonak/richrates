@@ -73,7 +73,6 @@ public class RatesBean implements Serializable {
      * Initializes the private fields, downloads the data from the Internet and parses the downloaded XML.
      */
     @PostConstruct
-    @SuppressWarnings("unused")
     private void initialize() {
         logger = LoggerFactory.getLogger(RatesBean.class);
         timeZone = TimeZone.getTimeZone("CET"); // ECB is in CET time zone

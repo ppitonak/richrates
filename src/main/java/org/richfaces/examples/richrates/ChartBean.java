@@ -66,7 +66,6 @@ public class ChartBean implements Serializable {
     /**
      * Initializes class' fields.
      */
-    @SuppressWarnings("unused")
     @PostConstruct
     private void initialize() {
         logger = LoggerFactory.getLogger(ChartBean.class);
