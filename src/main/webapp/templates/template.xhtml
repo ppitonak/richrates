@@ -35,7 +35,6 @@
         <link rel="shortcut icon" href="#{request.contextPath}/resources/images/favicon.ico" />
         <style type="text/css">
             html {
-                height: 100%;
                 background: linear-gradient(bottom, #{richSkin.generalBackgroundColor} 0%, #{richSkin.additionalBackgroundColor} 30%, white 100%);
                 background: -webkit-linear-gradient(bottom, #{richSkin.generalBackgroundColor} 0%, #{richSkin.additionalBackgroundColor} 30%, white 100%);
                 background: -o-linear-gradient(bottom, #{richSkin.generalBackgroundColor} 0%, #{richSkin.additionalBackgroundColor} 30%, white 100%);
@@ -75,8 +74,8 @@
 
     <h:body>
         <div id="wrap">
-
-            <div id="header"><ui:insert name="header">
+            <header>
+                <ui:insert name="header">
                     <h:panelGroup>
                         <table style="width: 100%">
                             <tbody>
@@ -115,14 +114,15 @@
                         </table>
                     </h:panelGroup>
 
-                </ui:insert></div>
+                </ui:insert>
+            </header>
 
             <div id="main">
                 <ui:insert name="main">Default main text</ui:insert>
             </div>
         </div>
 
-        <div id="footer">
+        <footer>
             <ui:insert name="footer">
                 <hr/>
                 <div class="text-footer">
@@ -131,7 +131,7 @@
                     Flags by <a href="http://flags.redpixart.com/">RedpixArt</a>.
                 </div>
             </ui:insert>
-        </div>
+        </footer>
 
     </h:body>
 
