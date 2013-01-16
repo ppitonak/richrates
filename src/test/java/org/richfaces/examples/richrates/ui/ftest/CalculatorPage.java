@@ -33,7 +33,7 @@ public class CalculatorPage extends AbstractPage {
 
     @FindBy(id = "calculator:amount")
     private WebElement amountInput;
-    @FindBy(xpath = "//div[contains(@class, 'result')]")
+    @FindBy(css = "div.result")
     private WebElement resultOutput;
     @FindBy(id = "calculator:calculateButton")
     private WebElement submitButton;
@@ -50,7 +50,7 @@ public class CalculatorPage extends AbstractPage {
     }
 
     public void waitUntilResultOutputIsNotEmpty() {
-        Graphene.waitAjax().until(Graphene.element(resultOutput).not().textEquals(""));
+        Graphene.waitAjax().until().element(resultOutput).text().not().equalTo("");
     }
 
     public String getURL() {
