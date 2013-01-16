@@ -94,7 +94,7 @@
 
         <version.richfaces>4.3.0.20121214-M3</version.richfaces>
         <version.arquillian-core>1.0.3.Final</version.arquillian-core>
-        <version.arquillian-drone>1.1.0.Final</version.arquillian-drone>
+        <version.arquillian-drone>1.2.0.Alpha1</version.arquillian-drone>
         <version.arquillian.graphene>2.0.0.Alpha3</version.arquillian.graphene>
         <version.shrinkwrap.resolver>2.0.0-alpha-6</version.shrinkwrap.resolver>
         <version.jbossas-71>7.1.1.Final</version.jbossas-71>
