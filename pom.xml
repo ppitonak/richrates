@@ -100,7 +100,7 @@
         <version.jbossas-71>7.1.1.Final</version.jbossas-71>
         <version.selenium>2.28.0</version.selenium>
         <version.opera.driver>0.18</version.opera.driver>
-        <version.seam.faces>3.1.0.Final</version.seam.faces>
+        <version.seam.faces>3.2.0.Final</version.seam.faces>
         <version.seam.international>3.1.0.Final</version.seam.international>
         <version.prettyfaces>3.3.3</version.prettyfaces>
 
