@@ -92,13 +92,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <version.richfaces>4.3.0.Final</version.richfaces>
+        <version.richfaces>4.3.1.CR1</version.richfaces>
         <version.arquillian-core>1.0.3.Final</version.arquillian-core>
         <version.arquillian-drone>1.2.0.Alpha1</version.arquillian-drone>
         <version.arquillian.graphene>2.0.0.Alpha3</version.arquillian.graphene>
         <version.shrinkwrap.resolver>2.0.0-beta-2</version.shrinkwrap.resolver>
         <version.jbossas-71>7.1.1.Final</version.jbossas-71>
-        <version.selenium>2.29.0</version.selenium>
+        <version.selenium>2.30.0</version.selenium>
         <version.opera.driver>0.18</version.opera.driver>
         <version.seam.faces>3.2.0.Final</version.seam.faces>
         <version.seam.international>3.1.0.Final</version.seam.international>
