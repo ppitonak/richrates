@@ -59,7 +59,7 @@
                             <tbody>
                                 <tr>
                                     <td class="app-title">
-                                        <a id="headerLink" href="#{facesContext.externalContext.requestContextPath}">
+                                        <a id="headerLink" href="#{facesContext.externalContext.requestContextPath != null ? facesContext.externalContext.requestContextPath : '/'}">
                                             <span>RichRates</span>
                                         </a>
                                     </td>
