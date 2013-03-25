@@ -407,6 +407,19 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemProperties>
+                                <arquillian.launch>jbossas-remote-71</arquillian.launch>
+                            </systemProperties>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>jbossas-managed-71</id>
@@ -450,6 +463,9 @@
                             <environmentVariables>
                                 <JBOSS_HOME>${home.jbossas-71}</JBOSS_HOME>
                             </environmentVariables>
+                            <systemProperties>
+                                <arquillian.launch>jbossas-managed-71</arquillian.launch>
+                            </systemProperties>
                         </configuration>
                     </plugin>
                 </plugins>
