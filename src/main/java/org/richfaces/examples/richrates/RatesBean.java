@@ -33,6 +33,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -47,8 +49,6 @@ import org.jdom2.input.SAXBuilder;
 import org.richfaces.examples.richrates.annotation.CurrenciesNames;
 import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.richfaces.examples.richrates.annotation.IssueDate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The main bean of the application. It downloads a data file from the Internet and parses it. It contains also long
@@ -74,7 +74,7 @@ public class RatesBean implements Serializable {
      */
     @PostConstruct
     private void initialize() {
-        logger = LoggerFactory.getLogger(RatesBean.class);
+        logger = Logger.getLogger(RatesBean.class.toString());
         timeZone = TimeZone.getTimeZone("CET"); // ECB is in CET time zone
         logger.info("Using " + timeZone.getDisplayName());
         currencyNames = new HashMap<String, String>();
@@ -164,16 +164,16 @@ public class RatesBean implements Serializable {
             logger.info("List with exchange rates parsed");
 
         } catch (JDOMException e) {
-            logger.error("Could not parse XML with exchange rates");
+            logger.log(Level.SEVERE, "Could not parse XML with exchange rates");
             e.printStackTrace();
         } catch (ParseException e) {
-            logger.error("Could not parse date format");
+            logger.log(Level.SEVERE, "Could not parse date format");
             e.printStackTrace();
         } catch (MalformedURLException e) {
-            logger.error("Could not parse the URL with exchange rates");
+            logger.log(Level.SEVERE, "Could not parse the URL with exchange rates");
             e.printStackTrace();
         } catch (IOException e) {
-            logger.error("An I/O error prevents a document from being fully parsed");
+            logger.log(Level.SEVERE, "An I/O error prevents a document from being fully parsed");
             e.printStackTrace();
         }
     }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:rich="http://richfaces.org/rich" xmlns:a4j="http://richfaces.org/a4j"
-    lang="en">
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:r="http://richfaces.org/rich" lang="en">
 <body>
     <ui:composition template="/templates/mobile.xhtml">
 
@@ -12,16 +11,16 @@
             <p style="font-size: larger;">These reference exchange rates are being published by European Central Bank,
                 usually at 14:15 CET on days when the payment system TARGET is open.</p>
             <br />
-            <rich:messages id="messages" />
+            <r:messages id="messages" />
             <h:form id="dateForm">
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Date:" for="date" />
-                    <rich:calendar id="date" value="#{tableBean.selectedDate}" required="true" styleClass="calendar"
+                    <r:calendar id="date" value="#{tableBean.selectedDate}" required="true" styleClass="calendar"
                         boundaryDatesMode="select" dayDisableFunction="disablementFunction"
                         dayClassFunction="disabledClassesProv" defaultLabel="Select a date" timeZone="#{ratesBean.timeZone}">
                         <f:validator validatorId="dateValidator" />
-                        <a4j:ajax render="tableForm" />
-                    </rich:calendar>
+                        <r:ajax render="tableForm" />
+                    <r:calendar>
                 </h:panelGrid>
             </h:form>
 
@@ -30,23 +29,23 @@
                     <f:convertDateTime dateStyle="full" timeStyle="none" timeZone="#{ratesBean.timeZone}" />
                 </h:outputText>
 
-                <rich:dataTable id="table" value="#{ratesBean.codes}" var="code" style="margin-top: 10px;" rows="12">
-                    <rich:column id="currency" sortBy="#{code}" sortOrder="ascending">
+                <r:dataTable id="table" value="#{ratesBean.codes}" var="code" style="margin-top: 10px;" rows="12">
+                    <r:column id="currency" sortBy="#{code}" sortOrder="ascending">
                         <f:facet name="header">Currency</f:facet>
                         <h:graphicImage id="flag" library="flags" name="#{code}_64.png" alt="#{ratesBean.currenciesNames[code]}"
                             title="#{ratesBean.currenciesNames[code]}" height="24"
                             style="padding-right: 10px; vertical-align: middle;" />
                         <h:outputText value="#{ratesBean.currenciesNames[code]} (#{code}) " />
-                    </rich:column>
+                    <r:column>
 
-                    <rich:column id="rate" sortBy="#{exchangeRates[tableBean.selectedDate][code]}">
+                    <r:column id="rate" sortBy="#{exchangeRates[tableBean.selectedDate][code]}">
                         <f:facet name="header">Exchange Rate</f:facet>
                         <h:outputText value="#{exchangeRates[tableBean.selectedDate][code]}"
                             style="font-size: large; font-weight: bold;" />
-                    </rich:column>
+                    <r:column>
 
                     <f:facet name="footer">
-                        <rich:dataScroller for="table" maxPages="10" fastControls="hide" boundaryControls="hide"
+                        <r:dataScroller for="table" maxPages="10" fastControls="hide" boundaryControls="hide"
                             id="dataScroller">
                             <f:facet name="previous">
                                 <h:outputText value=" Previous " />
@@ -60,9 +59,9 @@
                             <f:facet name="next_disabled">
                                 <h:outputText value=" Next " />
                             </f:facet>
-                        </rich:dataScroller>
+                        <r:dataScroller>
                     </f:facet>
-                </rich:dataTable>
+                <r:dataTable>
             </h:form>
         </ui:define>
     </ui:composition>

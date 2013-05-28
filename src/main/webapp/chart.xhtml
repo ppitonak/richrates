@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:rich="http://richfaces.org/rich"
-    xmlns:a4j="http://richfaces.org/a4j" xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:r="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core">
 
 <body>
     <ui:composition template="/templates/template.xhtml">
@@ -30,42 +30,42 @@
 
         <ui:define name="main">
 
-            <rich:dragIndicator id="indicator" />
+            <r:dragIndicator id="indicator" />
 
             <div style="float: left; width: 650px;">
                 <h:form id="dateForm" style="margin-bottom: 20px">
-                    <rich:messages />
-                    <rich:graphValidator value="#{chartBean}">
+                    <r:messages />
+                    <r:graphValidator value="#{chartBean}">
                         <h:panelGrid columns="3" styleClass="datesForm">
                             <h:outputLabel value="From date" for="fromDate" style="white-space: nowrap;" />
-                            <rich:calendar id="fromDate" value="#{chartBean.fromDate}" required="true" styleClass="calendar"
+                            <r:calendar id="fromDate" value="#{chartBean.fromDate}" required="true" styleClass="calendar"
                                 boundaryDatesMode="select" dayDisableFunction="disablementFunction" defaultLabel="Select a date"
                                 dayClassFunction="disabledClassesProv" style="white-space: nowrap;"
                                 timeZone="#{ratesBean.timeZone}">
                                 <f:validator validatorId="dateValidator" />
-                            </rich:calendar>
+                            </r:calendar>
 
-                            <rich:message id="fromDateMsg" for="fromDate" showDetail="false" showSummary="false" />
+                            <r:message id="fromDateMsg" for="fromDate" showDetail="false" showSummary="false" />
 
                             <h:outputLabel value="To date" for="toDate" style="white-space: nowrap;" />
-                            <rich:calendar id="toDate" value="#{chartBean.toDate}" required="true" styleClass="calendar"
+                            <r:calendar id="toDate" value="#{chartBean.toDate}" required="true" styleClass="calendar"
                                 boundaryDatesMode="select" dayDisableFunction="disablementFunction" defaultLabel="Select a date"
                                 dayClassFunction="disabledClassesProv" style="white-space: nowrap;"
                                 timeZone="#{ratesBean.timeZone}">
                                 <f:validator validatorId="dateValidator" />
-                            </rich:calendar>
+                            </r:calendar>
 
-                            <rich:message id="toDateMsg" for="toDate" showDetail="false" showSummary="false" />
+                            <r:message id="toDateMsg" for="toDate" showDetail="false" showSummary="false" />
 
-                            <a4j:commandButton id="displayButton" value="Display" render="chart" />
+                            <r:commandButton id="displayButton" value="Display" render="chart" />
                         </h:panelGrid>
-                    </rich:graphValidator>
+                    </r:graphValidator>
 
                 </h:form>
                 <h:form id="chartForm">
-                    <a4j:outputPanel id="chartPanel" styleClass="chart-panel" layout="block" ajaxRendered="true"
+                    <r:outputPanel id="chartPanel" styleClass="chart-panel" layout="block" ajaxRendered="true"
                         style="width: 700px; height: 350px;">
-                        <rich:dropTarget id="dropArea" acceptedTypes="flag" dropListener="#{chartBean.processDrop}" />
+                        <r:dropTarget id="dropArea" acceptedTypes="flag" dropListener="#{chartBean.processDrop}" />
                         <script type="text/javascript">
 							var plot = jQuery.plot(jQuery("div.chart-panel"),
 							        [{data : #{chartBean.currencyData}, color : '#{richSkin.generalLinkColor}', 
@@ -119,24 +119,20 @@
                                 }
                             });
          				</script>
-                    </a4j:outputPanel>
+                    </r:outputPanel>
                 </h:form>
             </div>
 
             <div class="flags">
                 <h:form id="flagsForm" prependId="false">
-                    <rich:dataGrid value="#{ratesBean.codes}" id="flags" var="code" columns="3">
-                        <a4j:outputPanel layout="block" id="panel">
-                            <rich:dragSource id="dragArea" dragIndicator="indicator" type="flag" dragValue="#{code}">
-                                <ui:remove>
-                                    <!--                                        <rich:dndParam name="label" value="#{ratesBean.currenciesNames[code]}" />-->
-                                </ui:remove>
-                            </rich:dragSource>
+                    <r:dataGrid value="#{ratesBean.codes}" id="flags" var="code" columns="3">
+                        <r:outputPanel layout="block" id="panel">
+                            <r:dragSource id="dragArea" dragIndicator="indicator" type="flag" dragValue="#{code}" />
                             <h:graphicImage id="flag" library="flags" name="#{code}_64.png"
                                 alt="#{ratesBean.currenciesNames[code]}" title="#{ratesBean.currenciesNames[code]}"
                                 onmouseover="this.style.cursor='move'" />
-                        </a4j:outputPanel>
-                    </rich:dataGrid>
+                        </r:outputPanel>
+                    </r:dataGrid>
                 </h:form>
             </div>
         </ui:define>

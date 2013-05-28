@@ -24,6 +24,8 @@ package org.richfaces.examples.richrates;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -33,11 +35,9 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Past;
 
 import org.joda.time.DateTime;
-import org.richfaces.event.DropEvent;
 import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.richfaces.examples.richrates.annotation.IssueDate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.richfaces.ui.drag.dropTarget.DropEvent;
 
 /**
  * Bean used on the page with chart. Is is possible to draw a chart for one currency for selected time range.
@@ -68,7 +68,7 @@ public class ChartBean implements Serializable {
      */
     @PostConstruct
     private void initialize() {
-        logger = LoggerFactory.getLogger(ChartBean.class);
+        logger = Logger.getLogger(ChartBean.class.toString());
         selectedCurrency = "USD";
         fromDate = new DateTime(toDate).minusDays(30).toDate();
     }
@@ -201,7 +201,7 @@ public class ChartBean implements Serializable {
 
     @AssertTrue(message = "Dates are in wrong order.")
     public boolean isDatesCorrect() {
-        logger.debug("Validating the order of dates");
+        logger.log(Level.FINE, "Validating the order of dates");
         return new DateTime(fromDate).isBefore(toDate.getTime());
     }
 }
