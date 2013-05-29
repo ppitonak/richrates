@@ -1,7 +1,7 @@
 # RichRates
 
 RichRates is a sample LGPL-licenced web application that demonstrates usage of Java EE 6 platform technologies
-such as JSF 2, RichFaces 4, CDI and Bean Validation. The application consists of three pages. The first page contains a calculator with which it 
+such as JSF 2, RichFaces, CDI and Bean Validation. The application consists of three pages. The first page contains a calculator with which it 
 is possible to convert Euros to about 30 foreign currencies and vice versa. The second page contains a table 
 with all available exchange rates for selected day. The last page displays a chart for one selected currency. 
 It is possible to select time range for which this chart will be displayed. All data are provided by European 
