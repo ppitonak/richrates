@@ -24,7 +24,6 @@ package org.richfaces.examples.richrates;
 import java.util.Date;
 import java.util.Map;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -43,7 +42,6 @@ import org.richfaces.examples.richrates.annotation.IssueDate;
  * @author <a href="mailto:ppitonak@redhat.com">Pavol Pitonak</a>
  * @since 4.2.1
  */
-@RequestScoped
 @FacesValidator("dateValidator")
 public class DateValidator implements Validator {
 

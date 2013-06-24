@@ -98,14 +98,9 @@
         <version.arquillian-drone>1.2.0.Alpha2</version.arquillian-drone>
         <version.arquillian.graphene>2.0.0.Alpha4</version.arquillian.graphene>
         <version.shrinkwrap.resolver>2.0.0-beta-3</version.shrinkwrap.resolver>
-        <version.jbossas-71>7.1.1.Final</version.jbossas-71>
+        <version.wildfly-80>8.0.0.Alpha2</version.wildfly-80>
         <version.selenium>2.33.0</version.selenium>
         <version.opera.driver>0.18</version.opera.driver>
-        <version.seam.faces>3.2.0.Final</version.seam.faces>
-        <version.seam.international>3.1.0.Final</version.seam.international>
-        <version.prettyfaces>3.3.3</version.prettyfaces>
-
-        <home.jbossas-71>${project.build.directory}/jboss-as-${version.jbossas-71}</home.jbossas-71>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
     </properties>
@@ -159,32 +154,6 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Dependencies for Seam -->
-        <dependency>
-            <groupId>org.jboss.seam.faces</groupId>
-            <artifactId>seam-faces</artifactId>
-            <version>${version.seam.faces}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.seam.international</groupId>
-            <artifactId>seam-international</artifactId>
-            <version>${version.seam.international}</version>
-        </dependency>
-        
-        <!-- Dependencies for PrettyFaces (needed by Seam Faces) -->
-        <dependency>
-            <groupId>com.ocpsoft</groupId>
-            <artifactId>prettyfaces-jsf2</artifactId>
-            <version>${version.prettyfaces}</version>
-        </dependency>
-
-        <!-- <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>4.2.0.Final</version>
-            <scope>provided</scope>
-        </dependency>-->
 
         <dependency>
             <groupId>org.jdom</groupId>
@@ -368,12 +337,12 @@
         </profile>
 
         <profile>
-            <id>jbossas-remote-71</id>
+            <id>wildfly-remote-80</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
-                    <version>${version.jbossas-71}</version>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
+                    <version>${version.wildfly-80}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -383,21 +352,20 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <systemProperties>
-                                <arquillian.launch>jbossas-remote-71</arquillian.launch>
+                                <arquillian.launch>wildfly-remote-80</arquillian.launch>
                             </systemProperties>
                         </configuration>
                     </plugin>
-
                 </plugins>
             </build>
         </profile>
         <profile>
-            <id>jbossas-managed-71</id>
+            <id>wildfly-managed-80</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-managed</artifactId>
-                    <version>${version.jbossas-71}</version>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <version>${version.wildfly-80}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -415,9 +383,9 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>org.jboss.as</groupId>
-                                            <artifactId>jboss-as-dist</artifactId>
-                                            <version>${version.jbossas-71}</version>
+                                            <groupId>org.wildfly</groupId>
+                                            <artifactId>wildfly-dist</artifactId>
+                                            <version>${version.wildfly-80}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -431,10 +399,10 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <environmentVariables>
-                                <JBOSS_HOME>${home.jbossas-71}</JBOSS_HOME>
+                                <JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly-80}</JBOSS_HOME>
                             </environmentVariables>
                             <systemProperties>
-                                <arquillian.launch>jbossas-managed-71</arquillian.launch>
+                                <arquillian.launch>wildfly-managed-80</arquillian.launch>
                             </systemProperties>
                         </configuration>
                     </plugin>
