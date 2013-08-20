@@ -17,6 +17,10 @@ navigation, View Declaration Language and JSF2's Ajax tag.
 * OpenJDK 6 or Sun JDK 6 or newer
 * WildFly 8.0.0.Alpha4 or newer
 
+## Continuous integration
+
+[![Build Status](https://travis-ci.org/ppitonak/richrates.png?branch=master)](https://travis-ci.org/ppitonak/richrates/builds)
+
 ## Start WildFly with the web profile
 
 1. Open a command line and navigate to the root of the WildFly server directory.
