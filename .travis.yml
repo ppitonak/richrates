@@ -1,3 +1,4 @@
 language: java
-script: mvn clean verify -P jbossas-managed-71,all-tests
+
+script: mvn clean verify -P jbossas-managed-71,all-tests -D arq.extension.webdriver.browserCapabilities=phantomjs
 
