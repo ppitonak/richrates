@@ -18,13 +18,13 @@
         <property name="deploymentExportPath">target/</property>
     </engine>
 
-    <container qualifier="wildfly-managed-80">
+    <container qualifier="wildfly-managed-8-0">
         <configuration>
             <property name="javaVmArguments">-Djboss.bind.address=0.0.0.0</property>
         </configuration>
     </container>
 
-    <container qualifier="wildfly-remote-80">
+    <container qualifier="wildfly-remote-8-0">
     </container>
 
     <extension qualifier="webdriver">

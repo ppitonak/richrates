@@ -15,19 +15,19 @@ navigation, View Declaration Language and JSF2's Ajax tag.
 
 * Apache Maven 3.0.4 or newer
 * OpenJDK 6 or Sun JDK 6 or newer
-* JBoss AS 7.1.1 or newer
+* WildFly 8.0.0.Alpha4 or newer
 
-## Start JBoss AS 7 with the web profile
+## Start WildFly with the web profile
 
-1. Open a command line and navigate to the root of the JBoss server directory.
+1. Open a command line and navigate to the root of the WildFly server directory.
 2. The following shows the command line to start the server with the web profile:
 
-        For Linux:   JBOSS_HOME/bin/standalone.sh
-        For Windows: JBOSS_HOME\bin\standalone.bat
+        For Linux:   WILDFLY_HOME/bin/standalone.sh
+        For Windows: WILDFLY_HOME\bin\standalone.bat
 
 ## Build and deploy
 
-1. Make sure you have started the JBoss Server as described above.
+1. Make sure you have started the WildFly as described above.
 2. Open a command line and navigate to the root directory of application.
 3. Type this command to build and deploy the archive:
 
@@ -41,7 +41,7 @@ The application will be running at the following URL: [http://localhost:8080/ric
 
 ## Undeploy the Archive
 
-1. Make sure you have started the JBoss Server as described above.
+1. Make sure you have started the WildFly as described above.
 2. Open a command line and navigate to the root directory of application.
 3. When you are finished testing, type this command to undeploy the archive:
 
@@ -61,13 +61,13 @@ To execute unit tests, run
 
 To execute only Arquillian functional tests, run 
 
-    mvn clean verify -P jbossas-managed-71,ftest
+    mvn clean verify -P wildfly-managed-8-0,ftest
 
 To execute both unit tests and functional tests, run
 
-    mvn clean verify -P jbossas-managed-71,all-tests
+    mvn clean verify -P wildfly-managed-8-0,all-tests
 
-All functional tests run in real Java EE container so the commands above will download JBoss AS 7.1.1.Final from a Maven repository, start the container, deploy the application, start Firefox, and execute the tests.
+All functional tests run in real Java EE container so the commands above will download WildFly 8 from a Maven repository, start the container, deploy the application, start Firefox, and execute the tests.
 
 ## Run the tests with different browsers
 
@@ -83,12 +83,12 @@ All functional tests run by default with Firefox which is on PATH. To select a d
 
 For instance, to run tests with Opera, run
 
-    mvn clean verify -P jbossas-managed-71,all-tests -D arq.extension.webdriver.browserCapabilities=opera
+    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browserCapabilities=opera
 
 To run tests with Android emulator, you first need to [start Android emulator](http://developer.android.com/tools/help/emulator.html), install [Selenium Server](http://code.google.com/p/selenium/downloads/list) and lauch Selenium Server application in emulator. After that you need to forward TCP port and lauch tests:
 
     <ANDROID_SDK_HOME>/platform-tools/adb forward tcp:4444 tcp:8080
-    mvn clean verify -P jbossas-managed-71,all-tests -D arq.extension.webdriver.browserCapabilities=android
+    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browserCapabilities=android
 
 ## Credits
 
