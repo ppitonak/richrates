@@ -94,12 +94,12 @@
 
         <version.richfaces>5.0.0-SNAPSHOT</version.richfaces>
         <version.jboss.javaee.6.spec>3.0.2.Final</version.jboss.javaee.6.spec>
-        <version.arquillian-core>1.0.3.Final</version.arquillian-core>
-        <version.arquillian-drone>1.2.0.Alpha2</version.arquillian-drone>
-        <version.arquillian.graphene>2.0.0.Alpha4</version.arquillian.graphene>
+        <version.arquillian-core>1.1.1.Final</version.arquillian-core>
+        <version.arquillian-drone>1.2.0.Alpha3</version.arquillian-drone>
+        <version.arquillian.graphene>2.0.0.Beta1-SNAPSHOT</version.arquillian.graphene>
         <version.shrinkwrap.resolver>2.0.0-beta-3</version.shrinkwrap.resolver>
         <version.wildfly-8-0>8.0.0.Alpha4</version.wildfly-8-0>
-        <version.selenium>2.33.0</version.selenium>
+        <version.selenium>2.35.0</version.selenium>
         <version.opera.driver>0.18</version.opera.driver>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
@@ -163,7 +163,7 @@
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.2</version>
+            <version>2.3</version>
         </dependency>
 
         <!-- Dependencies for testing -->

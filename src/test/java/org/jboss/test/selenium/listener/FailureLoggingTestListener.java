@@ -26,7 +26,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.jboss.arquillian.graphene.context.GrapheneContext;
+import org.jboss.arquillian.graphene.GrapheneContext;
 import org.jboss.test.selenium.utils.testng.TestInfo;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -43,7 +43,7 @@ import org.testng.TestListenerAdapter;
  */
 public class FailureLoggingTestListener extends TestListenerAdapter {
 
-    private WebDriver driver = GrapheneContext.getProxyForInterfaces(TakesScreenshot.class);
+    private WebDriver driver;
     private File mavenProjectBuildDirectory = new File(System.getProperty("maven.project.build.directory", "./target/"));
     private File failuresOutputDir = new File(mavenProjectBuildDirectory, "failures");
 
@@ -53,6 +53,8 @@ public class FailureLoggingTestListener extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult result) {
+        driver = GrapheneContext.lastContext().getWebDriver(TakesScreenshot.class);
+
         if (driver == null) {
             return;
         }
