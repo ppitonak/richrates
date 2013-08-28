@@ -1,4 +1,4 @@
 language: java
 
-script: mvn clean verify -P wildfly--managed-8-0,all-tests -D arq.extension.webdriver.browserCapabilities=phantomjs
+script: mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browserCapabilities=phantomjs
 
