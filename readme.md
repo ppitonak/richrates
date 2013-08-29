@@ -75,24 +75,28 @@ All functional tests run in real Java EE container so the commands above will do
 
 ## Run the tests with different browsers
 
-All functional tests run by default with Firefox which is on PATH. To select a different browser either edit arquillian.xml property browserCapabilities or set an environment property. Current supported values are:
+All functional tests run by default with Firefox which is on PATH. To select a different browser either edit arquillian.xml property "browser" or set an environment property. Current supported values are:
 
 * android
 * chrome
 * firefox (set in arquillian.xml)
-* htmlUnit
+* phantomjs
 * internetExplorer
 * iphone
 * opera
 
 For instance, to run tests with Opera, run
 
-    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browserCapabilities=opera
+    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browser=opera
+
+You can use PhantomJS to run tests in a headless environment, run
+    
+    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browser=phantomjs
 
 To run tests with Android emulator, you first need to [start Android emulator](http://developer.android.com/tools/help/emulator.html), install [Selenium Server](http://code.google.com/p/selenium/downloads/list) and lauch Selenium Server application in emulator. After that you need to forward TCP port and lauch tests:
 
     <ANDROID_SDK_HOME>/platform-tools/adb forward tcp:4444 tcp:8080
-    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browserCapabilities=android
+    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browser=android
 
 ## Credits
 
