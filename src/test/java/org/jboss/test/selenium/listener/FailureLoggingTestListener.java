@@ -1,6 +1,6 @@
 /*******************************************************************************
  * JBoss, Home of Professional Open Source
- * Copyright 2009-2010, Red Hat, Inc. and individual contributors
+ * Copyright 2009-2013, Red Hat, Inc. and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -26,7 +26,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.jboss.arquillian.graphene.GrapheneContext;
+import org.jboss.arquillian.graphene.context.GrapheneContext;
 import org.jboss.test.selenium.utils.testng.TestInfo;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
