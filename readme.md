@@ -1,4 +1,4 @@
-# RichRates
+# RichRates [![Build Status](https://travis-ci.org/ppitonak/richrates.png?branch=master)](https://travis-ci.org/ppitonak/richrates/builds)
 
 RichRates is a sample LGPL-licenced web application that demonstrates usage of Java EE 6 platform technologies
 such as JSF 2, RichFaces, CDI and Bean Validation. The application consists of three pages. The first page contains a calculator with which it 
@@ -16,10 +16,6 @@ navigation, View Declaration Language and JSF2's Ajax tag.
 * Apache Maven 3.0.4 or newer
 * OpenJDK 6 or Sun JDK 6 or newer
 * WildFly 8.0.0.Alpha4 or newer
-
-## Continuous integration
-
-[![Build Status](https://travis-ci.org/ppitonak/richrates.png?branch=master)](https://travis-ci.org/ppitonak/richrates/builds)
 
 ## Start WildFly with the web profile
 
