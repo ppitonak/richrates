@@ -103,6 +103,8 @@
         <version.opera.driver>0.18</version.opera.driver>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
+
+        <javax.faces.PROJECT_STAGE>Development</javax.faces.PROJECT_STAGE>
     </properties>
 
     <dependencyManagement>
@@ -286,6 +288,16 @@
                 <configuration>
                     <attachClasses>true</attachClasses>
                     <attachSources>true</attachSources>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF</targetPath>
+                            <includes>
+                                <include>**/web.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
                     <archive>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -295,6 +307,7 @@
                             <Dependencies>org.slf4j</Dependencies>
                         </manifestEntries>
                     </archive>
+
                 </configuration>
             </plugin>
             <plugin>
@@ -411,6 +424,9 @@
         </profile>
         <profile>
             <id>openshift</id>
+            <properties>
+                <javax.faces.PROJECT_STAGE>Production</javax.faces.PROJECT_STAGE>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
