@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:r="http://richfaces.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:r="http://richfaces.org">
 
 <body>
     <ui:composition template="/templates/template.xhtml">
@@ -34,8 +34,7 @@
                     <f:convertDateTime dateStyle="full" timeStyle="none" timeZone="#{ratesBean.timeZone}" />
                 </h:outputText>
 
-                <r:dataTable id="table" value="#{ratesBean.codes}" var="code" style="margin-top: 10px; width: 350px;"
-                    rows="12">
+                <r:dataTable id="table" value="#{ratesBean.codes}" var="code" style="margin-top: 10px; width: 350px;" rows="12">
                     <r:column id="currency" sortBy="#{code}" sortOrder="ascending">
                         <f:facet name="header">Currency Code</f:facet>
                         <h:graphicImage id="flag" library="flags" name="#{code}_64.png" alt="#{ratesBean.currenciesNames[code]}"
@@ -58,8 +57,7 @@
                     </r:column>
 
                     <f:facet name="footer">
-                        <r:dataScroller for="table" maxPages="10" fastControls="hide" boundaryControls="hide"
-                            id="dataScroller">
+                        <r:dataScroller for="table" maxPages="10" fastControls="hide" boundaryControls="hide" id="dataScroller">
                             <f:facet name="previous">
                                 <h:outputText value=" Previous " />
                             </f:facet>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:rich="http://richfaces.org">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:r="http://richfaces.org">
     
     <h:head id="head">
         <title><ui:insert name="title">Default title</ui:insert></title>
@@ -8,8 +8,6 @@
         <f:loadBundle basename="org.richfaces.examples.richrates.messages" var="msgs" />
         <h:outputScript name="jsf.js" library="javax.faces" />
         <h:outputStylesheet library="styles" name="common.css"/>
-        <!-- dropdownmenu.ecss not loaded automatically (RF-11958) -->
-        <h:outputStylesheet library="org.richfaces" name="dropdownmenu.ecss"/>
         <link rel="shortcut icon" href="#{request.contextPath}/resources/images/favicon.ico" />
         <style type="text/css">
             html {
@@ -91,11 +89,11 @@
                                 <tr>
                                     <td colspan="2">
                                         <h:form id="menuForm">
-                                            <rich:toolbar id="menuBar" itemSeparator="disc" style="width: 100%;">
-                                                <rich:menuItem id="index" action="calculator?faces-redirect=true" label="Calculator" />
-                                                <rich:menuItem id="table" action="table?faces-redirect=true" label="Exchange Rates" />
-                                                <rich:menuItem id="chart" action="chart?faces-redirect=true" label="Chart" />
-                                            </rich:toolbar>
+                                            <r:toolbar id="menuBar" itemSeparator="disc" style="width: 100%;">
+                                                <r:menuItem id="index" action="calculator?faces-redirect=true" label="Calculator" />
+                                                <r:menuItem id="table" action="table?faces-redirect=true" label="Exchange Rates" />
+                                                <r:menuItem id="chart" action="chart?faces-redirect=true" label="Chart" />
+                                            </r:toolbar>
                                         </h:form>
                                     </td>
                                 </tr>
