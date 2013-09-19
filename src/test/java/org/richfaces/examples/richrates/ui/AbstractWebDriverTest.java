@@ -55,7 +55,8 @@ public abstract class AbstractWebDriverTest<P extends AbstractPage> extends Arqu
 
     @Deployment(testable = false)
     public static WebArchive createTestArchive() {
-        File[] deps = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeDependencies().as(File.class);
+        File[] deps = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeDependencies().resolve()
+            .withTransitivity().asFile();
         WebArchive war = ShrinkWrap.create(WebArchive.class, "richrates.war")
             .addPackages(false, CalculatorBean.class.getPackage(), ExchangeRates.class.getPackage())
             .addAsLibraries(deps);
