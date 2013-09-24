@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:rich="http://richfaces.org"
-      xmlns:a4j="http://richfaces.org/a4j" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:r="http://richfaces.org" lang="en">
 
     <!--
     JBoss, Home of Professional Open Source
@@ -85,12 +84,12 @@
             <div id="header">
                 <ui:insert name="header">
                     <h:form id="menuForm">
-                        <rich:toolbar id="menuBar" itemSeparator="none" height="35px;">
+                        <r:toolbar id="menuBar" itemSeparator="none" height="35px;">
                             <h:link id="calculatorLink" outcome="/mobile/calculator" value="Calculator" styleClass="button-link"/>
                             <h:link id="tableLink" outcome="/mobile/table" value="Table" styleClass="button-link"/>
                             <h:link id="chartLink" outcome="/mobile/chart" value="Chart" styleClass="button-link"/>
                             <ui:remove>
-                            <rich:toolbarGroup location="right">                        
+                            <r:toolbarGroup location="right">                        
                                 <h:selectOneMenu id="select" value="#{skinBean.skin}" onchange="submit()">
                                     <f:selectItem itemLabel="Emerald Town" itemValue="emeraldTown" />
                                     <f:selectItem itemLabel="Blue Sky" itemValue="blueSky" />
@@ -100,9 +99,9 @@
                                     <f:selectItem itemLabel="Classic" itemValue="classic" />
                                     <f:selectItem itemLabel="Deep Marine" itemValue="deepMarine" />
                                 </h:selectOneMenu>
-                            </rich:toolbarGroup>
+                            </r:toolbarGroup>
                             </ui:remove>
-                        </rich:toolbar>
+                        </r:toolbar>
                     </h:form>
                 </ui:insert>
             </div>
