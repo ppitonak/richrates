@@ -29,9 +29,9 @@
                                 title="#{calculatorBean.fromEuro ? 'Euro' : ratesBean.currenciesNames[calculatorBean.selectedCurrency]}"
                                 onclick="showFlags()" />
 
-                            <r:commandButton id="swap" type="image" image="/resources/images/swap-gray.png"
-                                style="width: 32px;" title="Swap currencies" onmouseover="this.style.cursor='pointer'"
-                                render="calculatorPanel" action="#{calculatorBean.swap}" />
+                            <r:commandButton id="swap" type="image" image="/resources/images/swap-gray.png" style="width: 32px;"
+                                title="Swap currencies" onmouseover="this.style.cursor='pointer'"
+                                render="firstCurrency secondCurrency" action="#{calculatorBean.swap}" />
 
                             <h:graphicImage id="secondCurrency" library="flags"
                                 name="#{calculatorBean.fromEuro ? calculatorBean.selectedCurrency : 'EUR'}_128.png"
@@ -43,8 +43,8 @@
                         <r:messages id="validationMsgs" showDetail="false" showSummary="true" />
                         <h:panelGrid id="form" columns="3" style="padding: 10px;">
                             <h:outputLabel value="Date:" for="date" />
-                            <r:calendar id="date" value="#{calculatorBean.selectedDate}" required="true"
-                                styleClass="calendar" boundaryDatesMode="select" dayDisableFunction="disablementFunction"
+                            <r:calendar id="date" value="#{calculatorBean.selectedDate}" required="true" styleClass="calendar"
+                                boundaryDatesMode="select" dayDisableFunction="disablementFunction"
                                 dayClassFunction="disabledClassesProv" defaultLabel="Select a date"
                                 timeZone="#{ratesBean.timeZone}">
                                 <f:validator validatorId="dateValidator" />
@@ -60,11 +60,12 @@
                             <r:message id="amountMsg" for="amount" showDetail="false" showSummary="false" />
 
                             <r:commandButton id="calculateButton" value="Calculate" type="submit"
-                                action="#{calculatorBean.calculate}" render="calculatorPanel" />
+                                action="#{calculatorBean.calculate}" />
                         </h:panelGrid>
 
-                        <div class="result" style="font-weight: bold; font-size: large">
-                            <h:panelGroup id="result" rendered="#{calculatorBean.amount > 0}">
+                        <r:outputPanel id="resultWrapper" layout="block" styleClass="result" ajaxRendered="true"
+                            style="font-weight: bold; font-size: large">
+                            <r:outputPanel id="result" rendered="#{calculatorBean.amount > 0}">
                                 <h:outputText value="#{calculatorBean.amount}">
                                     <f:convertNumber minFractionDigits="3" maxFractionDigits="3" />
                                 </h:outputText>
@@ -73,8 +74,8 @@
                                     <f:convertNumber minFractionDigits="3" maxFractionDigits="3" />
                                 </h:outputText>
                                 <h:outputText value=" #{calculatorBean.fromEuro ? calculatorBean.selectedCurrency : 'EUR'}" />
-                            </h:panelGroup>
-                        </div>
+                            </r:outputPanel>
+                        </r:outputPanel>
                     </h:form>
                 </r:outputPanel>
             </div>
@@ -82,7 +83,7 @@
             <div class="flags" style="display: none; position: absolute; left: 30px;">
                 <h:form id="flagsForm" prependId="false">
                     <r:jsFunction name="changeCurrency" action="#{calculatorBean.selectCurrency}"
-                        render="result,firstCurrency,secondCurrency" oncomplete="hideFlags()">
+                        render="firstCurrency secondCurrency" oncomplete="hideFlags()">
                         <r:param assignTo="#{calculatorBean.selectedCurrency}" name="currency" value="#{code}" />
                     </r:jsFunction>
 

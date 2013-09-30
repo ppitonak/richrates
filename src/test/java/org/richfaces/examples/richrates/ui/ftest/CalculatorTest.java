@@ -32,7 +32,8 @@ import org.testng.annotations.Test;
 public class CalculatorTest extends AbstractWebDriverTest<CalculatorPage> {
 
     @Test
-    public void testCalculate() {
+    public void testCalculateEurToUsd() {
+        page.selectCurrency("USD");
         page.setAmount(33);
         page.waitUntilResultOutputIsNotEmpty();
         
@@ -41,5 +42,40 @@ public class CalculatorTest extends AbstractWebDriverTest<CalculatorPage> {
         Assert.assertTrue(result.matches("33.000 EUR = \\d+\\.\\d{3} USD"),
             "Result should start match expression \"33.000 EUR = \\d+\\.\\d{3} USD\".");
         Assert.assertNotEquals(result, "33.000 EUR = 0.000 USD", "Exchange rate for USD should not be 0.");
+    }
+    
+    @Test
+    public void testChangeCurrency() {
+        page.selectCurrency("CZK");
+        page.setAmount(33);
+        page.waitUntilResultOutputIsNotEmpty();
+        
+        String result = page.getResult();
+
+        Assert.assertTrue(result.matches("33.000 EUR = \\d+\\.\\d{3} CZK"),
+            "Result should match expression \"33.000 EUR = \\d+\\.\\d{3} CZK\".");
+        Assert.assertNotEquals(result, "33.000 EUR = 0.000 USD", "Exchange rate for CZK should not be 0.");
+    }
+    
+    @Test
+    public void testSwapCurrencies() {
+        page.selectCurrency("TRY");
+        page.setAmount(33);
+        page.waitUntilResultOutputIsNotEmpty();
+        
+        String firstResult = page.getResult();
+
+        Assert.assertTrue(firstResult.matches("33.000 EUR = \\d+\\.\\d{3} TRY"),
+            "Result should match expression \"33.000 EUR = \\d+\\.\\d{3} TRY\".");
+        Assert.assertNotEquals(firstResult, "33.000 EUR = 0.000 TRY", "Exchange rate for TRY should not be 0.");
+        
+        page.swapCurrencies();
+        
+        String secondResult = page.getResult();
+
+        Assert.assertTrue(secondResult.matches("33.000 TRY = \\d+\\.\\d{3} EUR"),
+            "Result should match expression \"33.000 TRY = \\d+\\.\\d{3} EUR\".");
+        Assert.assertNotEquals(secondResult, "33.000 TRY = 0.000 EUR", "Exchange rate for TRY should not be 0.");
+        Assert.assertNotEquals(firstResult, secondResult, "Exchange rate for EUR to TRY cannot be the same as TRY to EUR.");
     }
 }

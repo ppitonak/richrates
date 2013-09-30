@@ -21,13 +21,17 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui.ftest;
 
+import java.util.List;
+
 import org.jboss.arquillian.graphene.Graphene;
+import org.jboss.arquillian.graphene.GrapheneElement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.richfaces.examples.richrates.ui.AbstractPage;
 
 /**
  * @author <a href="mailto:jpapouse@redhat.com">Jan Papousek</a>
+ * @author <a href="https://community.jboss.org/people/ppitonak">Pavol Pitonak</a>
  */
 public class CalculatorPage extends AbstractPage {
 
@@ -37,6 +41,11 @@ public class CalculatorPage extends AbstractPage {
     private WebElement resultOutput;
     @FindBy(id = "calculator:calculateButton")
     private WebElement submitButton;
+    @FindBy(css = "img[id$=flag]")
+    private List<GrapheneElement> flags;
+    @FindBy(id = "calculator:swap")
+    private WebElement swapButton;
+    
 
     public String getResult() {
         return resultOutput.getText();
@@ -55,5 +64,20 @@ public class CalculatorPage extends AbstractPage {
 
     public String getURL() {
         return "faces/calculator.xhtml";
+    }
+    
+    public void selectCurrency(String currencyCode) {
+        WebElement flag = null;
+        for (WebElement element : flags) {
+            if (element.getAttribute("alt").contains(currencyCode)) {
+                flag = element;
+                break;
+            }
+        }
+        Graphene.guardAjax(flag).click();
+    }
+    
+    public void swapCurrencies() {
+        Graphene.guardAjax(swapButton).click();
     }
 }
