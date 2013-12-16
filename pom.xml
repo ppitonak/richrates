@@ -99,7 +99,7 @@
         <version.arquillian.graphene>2.0.0.Final</version.arquillian.graphene>
         <version.shrinkwrap.resolver>2.0.0</version.shrinkwrap.resolver>
         <version.wildfly-8-0>8.0.0.Beta1</version.wildfly-8-0>
-        <version.selenium>2.37.1</version.selenium>
+        <version.selenium>2.38.0</version.selenium>
         <version.opera.driver>0.18</version.opera.driver>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
