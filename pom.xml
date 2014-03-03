@@ -261,9 +261,9 @@
                     <version>3.3</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.jboss.as.plugins</groupId>
-                    <artifactId>jboss-as-maven-plugin</artifactId>
-                    <version>7.5.Final</version>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>1.0.0.Final</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -322,8 +322,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

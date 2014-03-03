@@ -15,7 +15,7 @@ navigation, View Declaration Language and JSF2's Ajax tag.
 
 * Apache Maven 3.0.4 or newer
 * OpenJDK 6 or Sun JDK 6 or newer
-* WildFly 8.0.0.Alpha4 or newer
+* WildFly 8.0.0.Final or newer
 
 ## Start WildFly with the web profile
 
@@ -31,7 +31,7 @@ navigation, View Declaration Language and JSF2's Ajax tag.
 2. Open a command line and navigate to the root directory of application.
 3. Type this command to build and deploy the archive:
 
-        mvn clean package jboss-as:deploy
+        mvn clean package wildfly:deploy
 
 4. This will deploy `target/richrates.war` to the running instance of the server.
 
@@ -45,7 +45,7 @@ The application will be running at the following URL: [http://localhost:8080/ric
 2. Open a command line and navigate to the root directory of application.
 3. When you are finished testing, type this command to undeploy the archive:
 
-        mvn jboss-as:undeploy
+        mvn wildfly:undeploy
 
 ## Run the tests
 
