@@ -208,7 +208,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>13.0.1</version>
+            <version>16.0.1</version>
         </dependency>
 
         <dependency>
@@ -263,7 +263,7 @@
                 <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>1.0.0.Final</version>
+                    <version>1.0.1.Final</version>
                 </plugin>
             </plugins>
         </pluginManagement>
