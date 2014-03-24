@@ -37,7 +37,6 @@ import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.test.selenium.listener.ConsoleStatusTestListener;
 import org.jboss.test.selenium.listener.FailureLoggingTestListener;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.android.AndroidDriver;
 import org.richfaces.examples.richrates.CalculatorBean;
 import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.testng.annotations.BeforeMethod;
@@ -72,11 +71,7 @@ public abstract class AbstractWebDriverTest<P extends AbstractPage> extends Arqu
 
     @BeforeMethod(dependsOnGroups = { "arquillian" })
     public void preparePage() throws MalformedURLException {
-        if (driver instanceof AndroidDriver) {
-            driver.get(getRoot() + page.getURL().replace("faces", "faces/mobile"));
-        } else {
-            driver.get(getRoot() + page.getURL());
-        }
+        driver.get(getRoot() + page.getURL());
     }
 
     protected WebDriver getWebDriver() {
@@ -87,8 +82,6 @@ public abstract class AbstractWebDriverTest<P extends AbstractPage> extends Arqu
         if (System.getProperty("server.address") != null) {
             return new URL(deployedRoot.toString()
                 .replace(deployedRoot.getHost(), System.getProperty("server.address")));
-        } else if (driver instanceof AndroidDriver) {
-            return new URL(deployedRoot.toString().replace(deployedRoot.getHost(), "10.0.2.2"));
         } else {
             return deployedRoot;
         }

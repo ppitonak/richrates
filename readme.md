@@ -89,11 +89,6 @@ You can use PhantomJS to run tests in a headless environment, run
     
     mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browser=phantomjs
 
-To run tests with Android emulator, you first need to [start Android emulator](http://developer.android.com/tools/help/emulator.html), install [Selenium Server](http://code.google.com/p/selenium/downloads/list) and lauch Selenium Server application in emulator. After that you need to forward TCP port and lauch tests:
-
-    <ANDROID_SDK_HOME>/platform-tools/adb forward tcp:4444 tcp:8080
-    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browser=android
-
 ## Credits
 
 The application uses data provided by [European Central Bank](http://www.ecb.europa.eu).
