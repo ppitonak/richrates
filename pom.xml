@@ -96,9 +96,9 @@
         <version.jboss.javaee.6.spec>3.0.2.Final</version.jboss.javaee.6.spec>
         <version.arquillian-core>1.1.3.Final</version.arquillian-core>
         <version.arquillian-drone>1.3.0.Final</version.arquillian-drone>
-        <version.arquillian.graphene>2.0.1.Final</version.arquillian.graphene>
+        <version.arquillian.graphene>2.0.2.Final</version.arquillian.graphene>
         <version.wildfly-8-0>8.0.0.Final</version.wildfly-8-0>
-        <version.selenium>2.39.0</version.selenium>
+        <version.selenium>2.40.0</version.selenium>
         <version.opera.driver>0.18</version.opera.driver>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
