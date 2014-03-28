@@ -1,0 +1,1 @@
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -javaagent:/var/lib/openshift/$OPENSHIFT_APP_UUID/wildfly/newrelic/newrelic.jar"
