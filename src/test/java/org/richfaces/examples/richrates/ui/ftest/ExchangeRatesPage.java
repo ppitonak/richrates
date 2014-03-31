@@ -23,18 +23,17 @@ package org.richfaces.examples.richrates.ui.ftest;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.richfaces.examples.richrates.ui.AbstractPage;
 
 /**
  * @author <a href="mailto:jpapouse@redhat.com">Jan Papousek</a>
  */
-public class ExchangeRatesPage extends AbstractPage {
+public class ExchangeRatesPage {
 
-    @FindBy(xpath="//span[contains(@class, 'rf-ds-act')]")
+    @FindBy(css="span.rf-ds-act")
     private WebElement currentPageNumber;
-    @FindBy(xpath="//a[contains(@class, 'rf-ds-btn-next')]")
+    @FindBy(css="a.rf-ds-btn-next")
     private WebElement nextButton;
-    @FindBy(xpath="//a[contains(@class, 'rf-ds-btn-prev')]")
+    @FindBy(css="a.rf-ds-btn-prev")
     private WebElement previousButton;
     
     public int getCurrentPageNumber() {
@@ -49,7 +48,4 @@ public class ExchangeRatesPage extends AbstractPage {
         previousButton.click();
     }
 
-    public String getURL() {
-        return "faces/table.xhtml";
-    }
 }

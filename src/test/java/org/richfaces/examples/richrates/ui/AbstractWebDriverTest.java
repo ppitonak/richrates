@@ -22,12 +22,10 @@
 package org.richfaces.examples.richrates.ui;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -39,18 +37,19 @@ import org.jboss.test.selenium.listener.FailureLoggingTestListener;
 import org.openqa.selenium.WebDriver;
 import org.richfaces.examples.richrates.CalculatorBean;
 import org.richfaces.examples.richrates.annotation.ExchangeRates;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 @Listeners({ ConsoleStatusTestListener.class, FailureLoggingTestListener.class })
-public abstract class AbstractWebDriverTest<P extends AbstractPage> extends Arquillian {
+public abstract class AbstractWebDriverTest extends Arquillian {
 
     @Drone
-    public WebDriver driver;
+    private WebDriver driver;
     @ArquillianResource
     private URL deployedRoot;
-    @Page
-    protected P page;
+    
+    protected void loadPage(String url) {
+        driver.get(deployedRoot.toExternalForm() + url);
+    }
 
     @Deployment(testable = false)
     public static WebArchive createTestArchive() {
@@ -69,22 +68,8 @@ public abstract class AbstractWebDriverTest<P extends AbstractPage> extends Arqu
         return war;
     }
 
-    @BeforeMethod(dependsOnGroups = { "arquillian" })
-    public void preparePage() throws MalformedURLException {
-        driver.get(getRoot() + page.getURL());
-    }
-
-    protected WebDriver getWebDriver() {
+    protected WebDriver getDriver() {
         return driver;
-    }
-
-    private URL getRoot() throws MalformedURLException {
-        if (System.getProperty("server.address") != null) {
-            return new URL(deployedRoot.toString()
-                .replace(deployedRoot.getHost(), System.getProperty("server.address")));
-        } else {
-            return deployedRoot;
-        }
     }
 
 }

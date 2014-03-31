@@ -23,16 +23,26 @@ package org.richfaces.examples.richrates.ui.ftest;
 
 import static org.testng.Assert.assertEquals;
 
+import org.jboss.arquillian.graphene.page.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.richfaces.examples.richrates.ui.AbstractWebDriverTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * @author <a href="mailto:jpapouse@redhat.com">Jan Papousek</a>
  */
-public class ExchangeRatesTest extends AbstractWebDriverTest<ExchangeRatesPage>{
+public class ExchangeRatesTest extends AbstractWebDriverTest {
+    
+    @Page
+    private ExchangeRatesPage page;
+    
+    @BeforeMethod(dependsOnGroups = "arquillian")
+    private void openPage() {
+        loadPage("faces/table.xhtml");
+    }
     
     private final class CurrentPageNumberEquals implements ExpectedCondition<Boolean> {
         private int pageNumber;
@@ -52,7 +62,7 @@ public class ExchangeRatesTest extends AbstractWebDriverTest<ExchangeRatesPage>{
     
     @Test
     public void testNextAndPrevious() {
-        WebDriverWait wait = new WebDriverWait(getWebDriver(), 5);
+        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
         page.next();
         wait.until(new CurrentPageNumberEquals(2));
         page.previous();

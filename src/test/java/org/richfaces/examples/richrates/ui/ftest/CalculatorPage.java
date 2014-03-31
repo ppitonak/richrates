@@ -27,13 +27,12 @@ import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.richfaces.examples.richrates.ui.AbstractPage;
 
 /**
  * @author <a href="mailto:jpapouse@redhat.com">Jan Papousek</a>
  * @author <a href="https://community.jboss.org/people/ppitonak">Pavol Pitonak</a>
  */
-public class CalculatorPage extends AbstractPage {
+public class CalculatorPage {
 
     @FindBy(id = "calculator:amount")
     private WebElement amountInput;
@@ -62,10 +61,6 @@ public class CalculatorPage extends AbstractPage {
         Graphene.waitAjax().until().element(resultOutput).text().not().equalTo("");
     }
 
-    public String getURL() {
-        return "faces/calculator.xhtml";
-    }
-    
     public void selectCurrency(String currencyCode) {
         WebElement flag = null;
         for (WebElement element : flags) {

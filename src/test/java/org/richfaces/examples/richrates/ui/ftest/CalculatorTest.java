@@ -21,16 +21,26 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui.ftest;
 
+import org.jboss.arquillian.graphene.page.Page;
 import org.richfaces.examples.richrates.ui.AbstractWebDriverTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * @author <a href="https://community.jboss.org/people/ppitonak">Pavol Pitonak</a>
  * @since 4.2.0
  */
-public class CalculatorTest extends AbstractWebDriverTest<CalculatorPage> {
+public class CalculatorTest extends AbstractWebDriverTest {
 
+    @Page
+    private CalculatorPage page;
+    
+    @BeforeMethod(dependsOnGroups = "arquillian")
+    private void openPage() {
+        loadPage("faces/calculator.xhtml");
+    }
+    
     @Test
     public void testCalculateEurToUsd() {
         page.selectCurrency("USD");
