@@ -94,3 +94,4 @@ You can use PhantomJS to run tests in a headless environment, run
 The application uses data provided by [European Central Bank](http://www.ecb.europa.eu).
 The images of flags provided by [RedpixArt Design](http://flags.redpixart.com).
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ppitonak/richrates/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
