@@ -61,11 +61,11 @@ To execute unit tests, run
 
 To execute only Arquillian functional tests, run 
 
-    mvn clean verify -P wildfly-managed-8-0,ftest
+    mvn clean verify -P wildfly-managed-8-1,ftest
 
 To execute both unit tests and functional tests, run
 
-    mvn clean verify -P wildfly-managed-8-0,all-tests
+    mvn clean verify -P wildfly-managed-8-1,all-tests
 
 All functional tests run in real Java EE container so the commands above will download WildFly 8 from a Maven repository, start the container, deploy the application, start Firefox, and execute the tests.
 
@@ -83,11 +83,11 @@ All functional tests run by default with Firefox which is on PATH. To select a d
 
 For instance, to run tests with Opera, run
 
-    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browser=opera
+    mvn clean verify -P wildfly-managed-8-1,all-tests -D arq.extension.webdriver.browser=opera
 
 You can use PhantomJS to run tests in a headless environment, run
     
-    mvn clean verify -P wildfly-managed-8-0,all-tests -D arq.extension.webdriver.browser=phantomjs
+    mvn clean verify -P wildfly-managed-8-1,all-tests -D arq.extension.webdriver.browser=phantomjs
 
 ## Credits
 
