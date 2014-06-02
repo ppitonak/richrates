@@ -35,9 +35,9 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Past;
 
 import org.joda.time.DateTime;
+import org.richfaces.event.DropEvent;
 import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.richfaces.examples.richrates.annotation.IssueDate;
-import org.richfaces.ui.drag.dropTarget.DropEvent;
 
 /**
  * Bean used on the page with chart. Is is possible to draw a chart for one currency for selected time range.

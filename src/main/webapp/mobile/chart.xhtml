@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:r="http://richfaces.org" lang="en">
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:r="http://richfaces.org/rich" xmlns:a="http://richfaces.org/a4j"
+    lang="en">
 <body>
     <ui:composition template="/templates/mobile.xhtml">
 
         <ui:define name="head">
-            <h:outputScript name="jquery.js" />
-            <h:outputScript library="scripts" name="richrates.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.crosshair.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.fillbetween.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.image.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.navigate.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.pie.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.resize.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.selection.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.stack.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.symbol.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.threshold.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.colorhelpers.min.js" />
             <h:outputScript target="head">
                 function showFlags() {
                     jQuery('div.flags').fadeIn(500);
@@ -59,7 +46,7 @@
 
                             <r:message id="toDateMsg" for="toDate" showDetail="false" showSummary="false" />
 
-                            <r:commandButton id="displayButton" value="Display" render="chart" />
+                            <a:commandButton id="displayButton" value="Display" render="chart" />
                             <h:graphicImage id="flag" library="flags" name="#{chartBean.selectedCurrency}_64.png"
                                 title="#{ratesBean.currenciesNames[chartBean.selectedCurrency]}"
                                 onmouseover="this.style.cursor='pointer'" alt="Flag #{chartBean.selectedCurrency}"
@@ -69,7 +56,7 @@
 
                 </h:form>
                 <h:form id="chartForm">
-                    <r:outputPanel id="chartPanel" styleClass="chart-panel" layout="block" ajaxRendered="true"
+                    <a:outputPanel id="chartPanel" styleClass="chart-panel" layout="block" ajaxRendered="true"
                         style="width: 300px; height: 200px;">
                         <script type="text/javascript">
 							var plot = jQuery.plot(jQuery("div.chart-panel"),
@@ -124,15 +111,15 @@
                                 }
                             });
          				</script>
-                    <r:outputPanel>
+                    <a:outputPanel>
                 </h:form>
             </div>
 
             <div class="flags" style="display: none; position: absolute; left: 30px;">
                 <h:form id="flagsForm" prependId="false">
-                    <r:jsFunction name="changeCurrency" render="chartPanel,dateForm" oncomplete="hideFlags()">
-                        <r:param assignTo="#{chartBean.selectedCurrency}" name="currency" value="#{code}" />
-                    <r:jsFunction>
+                    <a:jsFunction name="changeCurrency" render="chartPanel,dateForm" oncomplete="hideFlags()">
+                        <a:param assignTo="#{chartBean.selectedCurrency}" name="currency" value="#{code}" />
+                    <a:jsFunction>
 
                     <r:dataGrid value="#{ratesBean.codes}" id="flags" var="code" columns="4">
                         <h:graphicImage id="flag" library="flags" name="#{code}_64.png"
@@ -141,6 +128,20 @@
                     <r:dataGrid>
                 </h:form>
             </div>
+            
+            <h:outputScript library="scripts" name="richrates.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.crosshair.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.fillbetween.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.image.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.navigate.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.pie.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.resize.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.selection.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.stack.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.symbol.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.threshold.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.colorhelpers.min.js" target="head" />
         </ui:define>
     </ui:composition>
 </body>

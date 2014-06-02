@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:r="http://richfaces.org" lang="en">
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:r="http://richfaces.org/rich" xmlns:a="http://richfaces.org/a4j"
+    lang="en">
 
 <body>
     <ui:composition template="/templates/mobile.xhtml">
@@ -20,7 +21,7 @@
 
         <ui:define name="main">
             <div class="calculator">
-                <r:outputPanel id="calculatorPanel" layout="block">
+                <a:outputPanel id="calculatorPanel" layout="block">
                     <h:form id="calculator">
                         <h:panelGrid columns="4">
                             <h:graphicImage id="firstCurrency" library="flags"
@@ -29,7 +30,7 @@
                                 title="#{calculatorBean.fromEuro ? 'Euro' : ratesBean.currenciesNames[calculatorBean.selectedCurrency]}"
                                 onclick="showFlags()" />
 
-                            <r:commandButton id="swap" type="image" image="/resources/images/swap-gray.png" style="width: 32px;"
+                            <a:commandButton id="swap" type="image" image="/resources/images/swap-gray.png" style="width: 32px;"
                                 title="Swap currencies" onmouseover="this.style.cursor='pointer'"
                                 render="firstCurrency secondCurrency" action="#{calculatorBean.swap}" />
 
@@ -59,13 +60,13 @@
                             </h:inputText>
                             <r:message id="amountMsg" for="amount" showDetail="false" showSummary="false" />
 
-                            <r:commandButton id="calculateButton" value="Calculate" type="submit"
+                            <a:commandButton id="calculateButton" value="Calculate" type="submit"
                                 action="#{calculatorBean.calculate}" />
                         </h:panelGrid>
 
-                        <r:outputPanel id="resultWrapper" layout="block" styleClass="result" ajaxRendered="true"
+                        <a:outputPanel id="resultWrapper" layout="block" styleClass="result" ajaxRendered="true"
                             style="font-weight: bold; font-size: large">
-                            <r:outputPanel id="result" rendered="#{calculatorBean.amount > 0}">
+                            <a:outputPanel id="result" rendered="#{calculatorBean.amount > 0}">
                                 <h:outputText value="#{calculatorBean.amount}">
                                     <f:convertNumber minFractionDigits="3" maxFractionDigits="3" />
                                 </h:outputText>
@@ -74,18 +75,18 @@
                                     <f:convertNumber minFractionDigits="3" maxFractionDigits="3" />
                                 </h:outputText>
                                 <h:outputText value=" #{calculatorBean.fromEuro ? calculatorBean.selectedCurrency : 'EUR'}" />
-                            </r:outputPanel>
-                        </r:outputPanel>
+                            </a:outputPanel>
+                        </a:outputPanel>
                     </h:form>
-                </r:outputPanel>
+                </a:outputPanel>
             </div>
 
             <div class="flags" style="display: none; position: absolute; left: 30px;">
                 <h:form id="flagsForm" prependId="false">
-                    <r:jsFunction name="changeCurrency" action="#{calculatorBean.selectCurrency}"
+                    <a:jsFunction name="changeCurrency" action="#{calculatorBean.selectCurrency}"
                         render="firstCurrency secondCurrency" oncomplete="hideFlags()">
-                        <r:param assignTo="#{calculatorBean.selectedCurrency}" name="currency" value="#{code}" />
-                    </r:jsFunction>
+                        <a:param assignTo="#{calculatorBean.selectedCurrency}" name="currency" value="#{code}" />
+                    </a:jsFunction>
 
                     <r:dataGrid value="#{ratesBean.codes}" id="flags" var="code" columns="4">
                         <h:graphicImage id="flag" library="flags" name="#{code}_64.png"

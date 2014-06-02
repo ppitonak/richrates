@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:r="http://richfaces.org">
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:r="http://richfaces.org/rich" xmlns:a="http://richfaces.org/a4j">
 
 <body>
     <ui:composition template="/templates/template.xhtml">
@@ -24,7 +24,7 @@
                         boundaryDatesMode="select" dayDisableFunction="disablementFunction"
                         dayClassFunction="disabledClassesProv" defaultLabel="Select a date" timeZone="#{ratesBean.timeZone}">
                         <f:validator validatorId="dateValidator" />
-                        <r:ajax render="tableForm" />
+                        <a:ajax render="tableForm" />
                     </r:calendar>
                 </h:panelGrid>
             </h:form>

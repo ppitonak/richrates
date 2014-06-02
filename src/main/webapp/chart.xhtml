@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:r="http://richfaces.org" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    xmlns:r="http://richfaces.org/rich" xmlns:a="http://richfaces.org/a4j" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <body>
     <ui:composition template="/templates/template.xhtml">
@@ -8,20 +8,6 @@
         <ui:define name="title">RichRates - Chart</ui:define>
 
         <ui:define name="head">
-            <h:outputScript library="org.richfaces" name="jquery.js" />
-            <h:outputScript library="scripts" name="richrates.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.crosshair.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.fillbetween.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.image.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.navigate.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.pie.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.resize.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.selection.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.stack.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.symbol.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.threshold.min.js" />
-            <h:outputScript library="scripts/flot" name="jquery.colorhelpers.min.js" />
             <h:outputText
                 value="&lt;!--[if lte IE 8]&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;#{request.contextPath}/resources/scripts/flot/excanvas.min.js&quot; /&gt;&lt;![endif]--&gt;"
                 escape="false" />
@@ -57,13 +43,13 @@
 
                             <r:message id="toDateMsg" for="toDate" showDetail="false" showSummary="false" />
 
-                            <r:commandButton id="displayButton" value="Display" render="chart" />
+                            <a:commandButton id="displayButton" value="Display" render="chart" />
                         </h:panelGrid>
                     </r:graphValidator>
 
                 </h:form>
                 <h:form id="chartForm">
-                    <r:outputPanel id="chartPanel" styleClass="chart-panel" layout="block" ajaxRendered="true"
+                    <a:outputPanel id="chartPanel" styleClass="chart-panel" layout="block" ajaxRendered="true"
                         style="width: 700px; height: 350px;">
                         <r:dropTarget id="dropArea" acceptedTypes="flag" dropListener="#{chartBean.processDrop}" />
                         <script type="text/javascript">
@@ -119,22 +105,36 @@
                                 }
                             });
          				</script>
-                    </r:outputPanel>
+                    </a:outputPanel>
                 </h:form>
             </div>
 
             <div class="flags">
                 <h:form id="flagsForm" prependId="false">
                     <r:dataGrid value="#{ratesBean.codes}" id="flags" var="code" columns="3">
-                        <r:outputPanel layout="block" id="panel">
+                        <a:outputPanel layout="block" id="panel">
                             <r:dragSource id="dragArea" dragIndicator="indicator" type="flag" dragValue="#{code}" />
                             <h:graphicImage id="flag" library="flags" name="#{code}_64.png"
                                 alt="#{ratesBean.currenciesNames[code]}" title="#{ratesBean.currenciesNames[code]}"
                                 onmouseover="this.style.cursor='move'" />
-                        </r:outputPanel>
+                        </a:outputPanel>
                     </r:dataGrid>
                 </h:form>
             </div>
+            
+            <h:outputScript library="scripts" name="richrates.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.crosshair.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.fillbetween.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.image.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.navigate.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.pie.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.resize.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.selection.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.stack.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.symbol.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.flot.threshold.min.js" target="head" />
+            <h:outputScript library="scripts/flot" name="jquery.colorhelpers.min.js" target="head" />
         </ui:define>
     </ui:composition>
 </body>
