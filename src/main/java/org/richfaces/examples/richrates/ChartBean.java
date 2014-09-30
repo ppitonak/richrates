@@ -40,7 +40,6 @@ import org.joda.time.DateTime;
 import org.richfaces.event.DropEvent;
 import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.richfaces.examples.richrates.annotation.IssueDate;
-
 /**
  * Bean used on the page with chart. Is is possible to draw a chart for one currency for selected time range.
  * 
@@ -142,7 +141,7 @@ public class ChartBean implements Serializable {
                 actualDate = actualDate.plusDays(1);
                 continue;
             }
-            Number x = actualDate.getMillis();
+            Number x = actualDate.getDayOfYear();
             Number y = currencies.get(actualDate.toDate()).get(selectedCurrency).doubleValue();
             records.add(new CurrencyRecord(x, y));
             actualDate = actualDate.plusDays(1);

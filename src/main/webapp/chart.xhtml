@@ -12,21 +12,21 @@
                 value="&lt;!--[if lte IE 8]&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;#{request.contextPath}/resources/scripts/flot/excanvas.min.js&quot; /&gt;&lt;![endif]--&gt;"
                 escape="false" />
             <h:outputStylesheet library="styles" name="chart.css" />
+             <h:outputScript library="scripts" name="richrates.js" target="head" />
         </ui:define>
 
         <ui:define name="main">
-
             <r:dragIndicator id="indicator" />
-
+            <h:form id="currencyForm" style="margin-bottom: 20px">
+            <!-- Date selection section -->
             <div style="float: left; width: 650px;">
-                <h:form id="dateForm" style="margin-bottom: 20px">
                     <r:messages />
                     <r:graphValidator value="#{chartBean}">
                         <h:panelGrid columns="3" styleClass="datesForm">
                             <h:outputLabel value="From date" for="fromDate" style="white-space: nowrap;" />
                             <r:calendar id="fromDate" value="#{chartBean.fromDate}" required="true" styleClass="calendar"
                                 boundaryDatesMode="select" dayDisableFunction="disablementFunction" defaultLabel="Select a date"
-                                dayClassFunction="disabledClassesProv" style="white-space: nowrap;"
+                                dayClassFunction="disabledClassesProv"
                                 timeZone="#{ratesBean.timeZone}">
                                 <f:validator validatorId="dateValidator" />
                             </r:calendar>
@@ -46,12 +46,9 @@
                             <a:commandButton id="displayButton" value="Display" render="chart" action="#{chartBean.parseCurrencyData()}" />
                         </h:panelGrid>
                     </r:graphValidator>
-
-                </h:form>
             </div>
-
+             <!-- Date flags selection -->
             <div class="flags">
-                <h:form id="flagsForm" prependId="false">
                     <r:dataGrid value="#{ratesBean.codes}" id="flags" var="code" columns="3">
                         <a:outputPanel layout="block" id="panel">
                             <h:graphicImage id="flag" library="flags" name="#{code}_64.png"
@@ -61,10 +58,9 @@
                                 </h:graphicImage>
                         </a:outputPanel>
                     </r:dataGrid>
-                </h:form>
             </div>
-            <div style="width: 760px; height: 350px; padding-top:130px;">
-            <h:form id="chartForm">
+             <!-- Chart representation section -->
+            <div style="width: 745px; height: 350px; padding-top:130px;">
             <r:dropTarget id="dropArea" acceptedTypes="flag" dropListener="#{chartBean.processDrop}" render="chart"/>
                 <r:chart id="chart">  
                     <r:chartSeries label="#{chartBean.currency.name}" type="line">
@@ -73,8 +69,8 @@
                         </a:repeat>
                     </r:chartSeries>             
                 </r:chart>
-            </h:form>
             </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 </body>
