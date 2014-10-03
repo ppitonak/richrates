@@ -72,6 +72,11 @@
             <email>jpapouse @ redhat.com</email>
             <timezone>+1</timezone>
         </developer>
+        <developer>
+            <name>Martin Tomasek</name>
+            <email>mtomasek @ redhat.com</email>
+            <timezone>+1</timezone>
+        </developer>
     </developers>
 
     <repositories>
