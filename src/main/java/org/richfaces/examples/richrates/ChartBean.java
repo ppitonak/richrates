@@ -23,6 +23,8 @@ package org.richfaces.examples.richrates;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +40,6 @@ import org.joda.time.DateTime;
 import org.richfaces.event.DropEvent;
 import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.richfaces.examples.richrates.annotation.IssueDate;
-
 /**
  * Bean used on the page with chart. Is is possible to draw a chart for one currency for selected time range.
  * 
@@ -59,8 +60,10 @@ public class ChartBean implements Serializable {
     @Inject
     @ExchangeRates
     private Map<Date, Map<String, Double>> currencies;
+    
+    private Currency currency;
+    
     private String selectedCurrency;
-    private String draggedCurrency;
     private Logger logger;
 
     /**
@@ -71,6 +74,7 @@ public class ChartBean implements Serializable {
         logger = Logger.getLogger(ChartBean.class.toString());
         selectedCurrency = "USD";
         fromDate = new DateTime(toDate).minusDays(30).toDate();
+        parseCurrencyData();
     }
 
     /**
@@ -121,74 +125,36 @@ public class ChartBean implements Serializable {
     }
 
     /**
-     * Setter for selected currency.
-     * 
-     * @param selectedCurrency
-     *            ISO code for selected currency
-     */
-    public void setSelectedCurrency(String selectedCurrency) {
-        this.selectedCurrency = selectedCurrency;
-    }
-
-    /**
-     * Getter for dragged currency.
-     * 
-     * @return ISO code of the currency which was dragged
-     */
-    public String getDraggedCurrency() {
-        return draggedCurrency;
-    }
-
-    /**
-     * Setter for dragged currency.
-     * 
-     * @param draggedCurrency
-     *            ISO code of the currency which was dragged and dropped
-     */
-    public void setDraggedCurrency(String draggedCurrency) {
-        this.draggedCurrency = draggedCurrency;
-    }
-
-    /**
-     * Getter for currency names, e.g. [EUR:Euro, USD:American Dollar].
-     * 
-     * @param currencyNames
-     *            map containing a mapping of currency code to its long name
-     */
-    public void setCurrencyNames(Map<String, String> currencyNames) {
-    }
-
-    /**
      * Creates a data structure needed by chart component. It creates a set of points where X is date and Y is an
      * exchange rate.
      * 
      * @return set of points for chart
      */
-    public String getCurrencyData() {
-        StringBuilder data = new StringBuilder("[ ");
-
+    public void parseCurrencyData() {
         DateTime toDate = new DateTime(this.toDate);
         DateTime actualDate = new DateTime(fromDate);
-
+        currency = new Currency();
+        currency.setName(getSelectedCurrency());
+        List<CurrencyRecord> records = new LinkedList<CurrencyRecord>();
         while (actualDate.compareTo(toDate) <= 0) {
             if (currencies.get(actualDate.toDate()) == null) {
                 actualDate = actualDate.plusDays(1);
                 continue;
             }
-            Number x = actualDate.getMillis();
+            Number x = actualDate.getDayOfYear();
             Number y = currencies.get(actualDate.toDate()).get(selectedCurrency).doubleValue();
-            data.append("[");
-            data.append(x);
-            data.append(",");
-            data.append(y);
-            data.append("],");
+            records.add(new CurrencyRecord(x, y));
             actualDate = actualDate.plusDays(1);
         }
-
-        data.append("]");
-        return data.toString();
+        currency.setData(records);
     }
 
+    @AssertTrue(message = "Dates are in wrong order.")
+    public boolean isDatesCorrect() {
+        logger.log(Level.FINE, "Validating the order of dates");
+        return new DateTime(fromDate).isBefore(toDate.getTime());
+    }
+    
     /**
      * A method used to process drop event.
      * 
@@ -196,12 +162,15 @@ public class ChartBean implements Serializable {
      *            a drop event on the chart
      */
     public void processDrop(DropEvent event) {
-        selectedCurrency = (String) event.getDragValue();
+         selectedCurrency = (String) event.getDragValue();
+         parseCurrencyData();
     }
 
-    @AssertTrue(message = "Dates are in wrong order.")
-    public boolean isDatesCorrect() {
-        logger.log(Level.FINE, "Validating the order of dates");
-        return new DateTime(fromDate).isBefore(toDate.getTime());
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 }

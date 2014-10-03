@@ -12,21 +12,21 @@
                 value="&lt;!--[if lte IE 8]&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;#{request.contextPath}/resources/scripts/flot/excanvas.min.js&quot; /&gt;&lt;![endif]--&gt;"
                 escape="false" />
             <h:outputStylesheet library="styles" name="chart.css" />
+             <h:outputScript library="scripts" name="richrates.js" target="head" />
         </ui:define>
 
         <ui:define name="main">
-
             <r:dragIndicator id="indicator" />
-
+            <h:form id="currencyForm" style="margin-bottom: 20px">
+            <!-- Date selection section -->
             <div style="float: left; width: 650px;">
-                <h:form id="dateForm" style="margin-bottom: 20px">
                     <r:messages />
                     <r:graphValidator value="#{chartBean}">
                         <h:panelGrid columns="3" styleClass="datesForm">
                             <h:outputLabel value="From date" for="fromDate" style="white-space: nowrap;" />
                             <r:calendar id="fromDate" value="#{chartBean.fromDate}" required="true" styleClass="calendar"
                                 boundaryDatesMode="select" dayDisableFunction="disablementFunction" defaultLabel="Select a date"
-                                dayClassFunction="disabledClassesProv" style="white-space: nowrap;"
+                                dayClassFunction="disabledClassesProv"
                                 timeZone="#{ratesBean.timeZone}">
                                 <f:validator validatorId="dateValidator" />
                             </r:calendar>
@@ -43,98 +43,34 @@
 
                             <r:message id="toDateMsg" for="toDate" showDetail="false" showSummary="false" />
 
-                            <a:commandButton id="displayButton" value="Display" render="chart" />
+                            <a:commandButton id="displayButton" value="Display" render="chart" action="#{chartBean.parseCurrencyData()}" />
                         </h:panelGrid>
                     </r:graphValidator>
-
-                </h:form>
-                <h:form id="chartForm">
-                    <a:outputPanel id="chartPanel" styleClass="chart-panel" layout="block" ajaxRendered="true"
-                        style="width: 700px; height: 350px;">
-                        <r:dropTarget id="dropArea" acceptedTypes="flag" dropListener="#{chartBean.processDrop}" />
-                        <script type="text/javascript">
-							var plot = jQuery.plot(jQuery("div.chart-panel"),
-							        [{data : #{chartBean.currencyData}, color : '#{richSkin.generalLinkColor}', 
-										label : '#{chartBean.selectedCurrency}' }],							
-															 
-						            {
-										yaxis : { autoscaleMargin : 0.02 }, 
-								        grid : { 
-								        	hoverable : true, 
-								        	clickable : true 
-								        	},
-										xaxis : { 
-											mode : "time" 
-											}, 
-										points : { 
-											show : true 
-											}, 
-										lines : { 
-											show : true 
-											}  
-									});
-									
-							function showTooltip(x, y, contents) {
-			                    $('<div id="tooltip">' + contents + '</div>').css( {
-			                        position: 'absolute',
-			                        display: 'none',
-			                        top: y + 5,
-			                        left: x + 5,
-			                        border: '1px solid #fdd',
-			                        padding: '2px',
-			                        'background-color': '#fee',
-			                        opacity: 0.80
-			                    }).appendTo('div#main').fadeIn(200);
-			                }
-							
-							var previousPoint = null;
-							
-							$('div.chart-panel').bind('plothover', function (event, pos, item) {
-                                if (item) {
-                                    if (previousPoint != item.dataIndex) {
-                                        previousPoint = item.dataIndex;
-                                        $('#tooltip').remove();
-                                        var x = item.datapoint[0].toFixed(2),
-                                        y = item.datapoint[1].toFixed(2);
-                                        showTooltip(item.pageX, item.pageY, '1 EUR = ' + y + ' #{chartBean.selectedCurrency}');
-                                    }
-                                }
-                                else {
-                                    $('#tooltip').remove();
-                                    previousPoint = null;            
-                                }
-                            });
-         				</script>
-                    </a:outputPanel>
-                </h:form>
             </div>
-
+             <!-- Date flags selection -->
             <div class="flags">
-                <h:form id="flagsForm" prependId="false">
                     <r:dataGrid value="#{ratesBean.codes}" id="flags" var="code" columns="3">
                         <a:outputPanel layout="block" id="panel">
-                            <r:dragSource id="dragArea" dragIndicator="indicator" type="flag" dragValue="#{code}" />
                             <h:graphicImage id="flag" library="flags" name="#{code}_64.png"
                                 alt="#{ratesBean.currenciesNames[code]}" title="#{ratesBean.currenciesNames[code]}"
-                                onmouseover="this.style.cursor='move'" />
+                                onmouseover="this.style.cursor='move'" >
+                                <r:dragSource dragValue="#{code}" type="flag" id="dragSource"></r:dragSource>
+                                </h:graphicImage>
                         </a:outputPanel>
                     </r:dataGrid>
-                </h:form>
             </div>
-            
-            <h:outputScript library="scripts" name="richrates.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.crosshair.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.fillbetween.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.image.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.navigate.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.pie.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.resize.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.selection.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.stack.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.symbol.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.flot.threshold.min.js" target="head" />
-            <h:outputScript library="scripts/flot" name="jquery.colorhelpers.min.js" target="head" />
+             <!-- Chart representation section -->
+            <div style="width: 745px; height: 350px; padding-top:130px;">
+            <r:dropTarget id="dropArea" acceptedTypes="flag" dropListener="#{chartBean.processDrop}" render="chart"/>
+                <r:chart id="chart">  
+                    <r:chartSeries label="#{chartBean.currency.name}" type="line">
+                        <a:repeat value="#{chartBean.currency.data}" var="record">
+                            <r:chartPoint x="#{record.month}" y="#{record.rate}" />
+                        </a:repeat>
+                    </r:chartSeries>             
+                </r:chart>
+            </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 </body>
