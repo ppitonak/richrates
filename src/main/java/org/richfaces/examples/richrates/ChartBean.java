@@ -141,9 +141,9 @@ public class ChartBean implements Serializable {
                 actualDate = actualDate.plusDays(1);
                 continue;
             }
-            Number x = actualDate.getDayOfYear();
-            Number y = currencies.get(actualDate.toDate()).get(selectedCurrency).doubleValue();
-            records.add(new CurrencyRecord(x, y));
+            String dayAndMonth = actualDate.toString("dd.MM");
+            Number rate = currencies.get(actualDate.toDate()).get(selectedCurrency).doubleValue();
+            records.add(new CurrencyRecord(dayAndMonth, rate));
             actualDate = actualDate.plusDays(1);
         }
         currency.setData(records);

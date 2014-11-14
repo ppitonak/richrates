@@ -8,15 +8,15 @@ package org.richfaces.examples.richrates;
 public class CurrencyRecord {
 
     //Note there is Number cause String not working right now
-    private final Number month;
+    private final String month;
     private final Number rate;
     
-    public CurrencyRecord(Number month, Number rate){
+    public CurrencyRecord(String month, Number rate){
         this.month = month;
         this.rate = rate;
     }
 
-    public Number getMonth() {
+    public String getMonth() {
         return month;
     }
 
