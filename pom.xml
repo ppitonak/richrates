@@ -100,7 +100,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <version.richfaces>4.5.2-SNAPSHOT</version.richfaces>
-        <version.jboss.javaee.6.spec>3.0.2.Final</version.jboss.javaee.6.spec>
+        <version.jboss.javaee.6.spec>3.0.3.Final</version.jboss.javaee.6.spec>
         <version.arquillian-core>1.1.5.Final</version.arquillian-core>
         <version.arquillian-drone>2.0.0.Alpha2</version.arquillian-drone>
         <version.arquillian.graphene>2.1.0.Alpha1</version.arquillian.graphene>
@@ -188,6 +188,12 @@
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-drone-webdriver-depchain</artifactId>
             <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>1.4.01</version>
             <scope>test</scope>
         </dependency>
         
