@@ -94,8 +94,6 @@ public class RatesBean implements Serializable {
         currencyNames.put("INR", "Indian Rupee");
         currencyNames.put("JPY", "Japan Yen");
         currencyNames.put("KRW", "South Korean Won");
-        currencyNames.put("LTL", "Lithuanian Litas");
-        currencyNames.put("LVL", "Latvian Lats");
         currencyNames.put("MXN", "Mexican Peso");
         currencyNames.put("MYR", "Malaysian Ringgit");
         currencyNames.put("NOK", "Norwegian Kroner");
