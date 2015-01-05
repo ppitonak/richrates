@@ -104,7 +104,7 @@
         <version.arquillian-core>1.1.5.Final</version.arquillian-core>
         <version.arquillian-drone>2.0.0.Alpha2</version.arquillian-drone>
         <version.arquillian.graphene>2.1.0.Alpha1</version.arquillian.graphene>
-        <version.wildfly-8-1>8.1.0.Final</version.wildfly-8-1>
+        <version.wildfly-8-2>8.2.0.Final</version.wildfly-8-2>
         <version.selenium>2.44.0</version.selenium>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
@@ -324,12 +324,12 @@
         </profile>
 
         <profile>
-            <id>wildfly-remote-8-1</id>
+            <id>wildfly-remote-8-2</id>
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>${version.wildfly-8-1}</version>
+                    <version>${version.wildfly-8-2}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -339,7 +339,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <systemProperties>
-                                <arquillian.launch>wildfly-remote-8-1</arquillian.launch>
+                                <arquillian.launch>wildfly-remote-8-2</arquillian.launch>
                             </systemProperties>
                         </configuration>
                     </plugin>
@@ -347,12 +347,12 @@
             </build>
         </profile>
         <profile>
-            <id>wildfly-managed-8-1</id>
+            <id>wildfly-managed-8-2</id>
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <version>${version.wildfly-8-1}</version>
+                    <version>${version.wildfly-8-2}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -372,7 +372,7 @@
                                         <artifactItem>
                                             <groupId>org.wildfly</groupId>
                                             <artifactId>wildfly-dist</artifactId>
-                                            <version>${version.wildfly-8-1}</version>
+                                            <version>${version.wildfly-8-2}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -386,10 +386,10 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <environmentVariables>
-                                <JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly-8-1}</JBOSS_HOME>
+                                <JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly-8-2}</JBOSS_HOME>
                             </environmentVariables>
                             <systemProperties>
-                                <arquillian.launch>wildfly-managed-8-1</arquillian.launch>
+                                <arquillian.launch>wildfly-managed-8-2</arquillian.launch>
                             </systemProperties>
                         </configuration>
                     </plugin>
