@@ -21,7 +21,7 @@
     <groupId>org.richfaces.examples</groupId>
     <artifactId>richrates</artifactId>
     <name>RichRates</name>
-    <version>4.5.10-SNAPSHOT</version>
+    <version>4.5.15-SNAPSHOT</version>
     <packaging>war</packaging>
     <description>RichFaces application for exchange rates.</description>
     <url>http://jboss.org/richfaces</url>
@@ -99,13 +99,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <version.richfaces>4.5.11.Final</version.richfaces>
+        <version.richfaces>4.5.14.Final</version.richfaces>
         <version.jboss.javaee.6.spec>3.0.3.Final</version.jboss.javaee.6.spec>
-        <version.arquillian-core>1.1.10.Final</version.arquillian-core>
-        <version.arquillian-drone>2.0.0.Alpha5</version.arquillian-drone>
+        <version.arquillian-core>1.1.11.Final</version.arquillian-core>
+        <version.arquillian-drone>2.0.0.CR1</version.arquillian-drone>
         <version.arquillian.graphene>2.1.0.Alpha3</version.arquillian.graphene>
         <version.wildfly-8-2>8.2.0.Final</version.wildfly-8-2>
-        <version.selenium>2.48.2</version.selenium>
+        <version.selenium>2.53.0</version.selenium>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
 
@@ -169,7 +169,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.9.9</version>
+            <version>6.9.10</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -210,7 +210,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>3.5.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
@@ -222,7 +222,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.19</version>
+                    <version>2.19.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
@@ -238,12 +238,12 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.4</version>
+                    <version>3.5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>1.1.0.Alpha4</version>
+                    <version>1.1.0.Alpha7</version>
                 </plugin>
             </plugins>
         </pluginManagement>
