@@ -104,7 +104,7 @@
         <version.arquillian-core>1.1.11.Final</version.arquillian-core>
         <version.arquillian-drone>2.0.0.CR1</version.arquillian-drone>
         <version.arquillian.graphene>2.1.0.Alpha3</version.arquillian.graphene>
-        <version.wildfly-8-2>8.2.0.Final</version.wildfly-8-2>
+        <version.wildfly-8-2>8.2.1.Final</version.wildfly-8-2>
         <version.selenium>2.53.0</version.selenium>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
