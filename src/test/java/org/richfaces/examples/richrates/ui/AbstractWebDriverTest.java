@@ -21,7 +21,6 @@
  *******************************************************************************/
 package org.richfaces.examples.richrates.ui;
 
-import java.io.File;
 import java.net.URL;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -29,14 +28,11 @@ import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.jboss.shrinkwrap.resolver.api.maven.archive.importer.MavenImporter;
 import org.jboss.test.selenium.listener.ConsoleStatusTestListener;
 import org.jboss.test.selenium.listener.FailureLoggingTestListener;
 import org.openqa.selenium.WebDriver;
-import org.richfaces.examples.richrates.CalculatorBean;
-import org.richfaces.examples.richrates.annotation.ExchangeRates;
 import org.testng.annotations.Listeners;
 
 @Listeners({ ConsoleStatusTestListener.class, FailureLoggingTestListener.class })
@@ -53,19 +49,7 @@ public abstract class AbstractWebDriverTest extends Arquillian {
 
     @Deployment(testable = false)
     public static WebArchive createTestArchive() {
-        File[] deps = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeDependencies().resolve()
-            .withTransitivity().asFile();
-        WebArchive war = ShrinkWrap.create(WebArchive.class, "richrates.war")
-            .addPackages(false, CalculatorBean.class.getPackage(), ExchangeRates.class.getPackage())
-            .addAsLibraries(deps);
-
-        war.merge(ShrinkWrap.create(ExplodedImporter.class, "tmp1.war").importDirectory("src/main/webapp")
-            .as(WebArchive.class));
-        war.merge(
-            ShrinkWrap.create(ExplodedImporter.class, "tmp2.war").importDirectory("src/main/resources")
-                .as(WebArchive.class), "WEB-INF/classes");
-
-        return war;
+        return ShrinkWrap.create(MavenImporter.class).loadPomFromFile("/home/ppitonak/workspace/richrates/pom.xml").importBuildOutput().as(WebArchive.class);
     }
 
     protected WebDriver getDriver() {
