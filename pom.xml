@@ -21,7 +21,7 @@
     <groupId>org.richfaces.examples</groupId>
     <artifactId>richrates</artifactId>
     <name>RichRates</name>
-    <version>4.5.15-SNAPSHOT</version>
+    <version>4.5.17-SNAPSHOT</version>
     <packaging>war</packaging>
     <description>RichFaces application for exchange rates.</description>
     <url>http://jboss.org/richfaces</url>
@@ -38,10 +38,6 @@
         <connection>scm:git:git://github.com/qa/richrates.git</connection>
         <developerConnection>scm:git:git@github.com:qa/richrates.git</developerConnection>
     </scm>
-
-    <prerequisites>
-        <maven>3.2.1</maven>
-    </prerequisites>
 
     <distributionManagement>
         <snapshotRepository>
@@ -99,13 +95,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <version.richfaces>4.5.14.Final</version.richfaces>
-        <version.jboss.javaee.6.spec>3.0.3.Final</version.jboss.javaee.6.spec>
-        <version.arquillian-core>1.1.11.Final</version.arquillian-core>
-        <version.arquillian-drone>2.0.0.CR1</version.arquillian-drone>
-        <version.arquillian.graphene>2.1.0.Alpha3</version.arquillian.graphene>
-        <version.wildfly-8-2>8.2.1.Final</version.wildfly-8-2>
-        <version.selenium>2.53.0</version.selenium>
+        <version.richfaces>4.5.17.Final</version.richfaces>
+        <version.jboss.javaee.7.spec>1.1.0.Final</version.jboss.javaee.7.spec>
+        <version.arquillian-universe>1.1.15.2</version.arquillian-universe>
+        <version.wildfly>8.2.1.Final</version.wildfly>
+        <version.wildfly-container>2.1.0.Final</version.wildfly-container>
 
         <testng.suite.xml>src/test/resources/testng.xml</testng.suite.xml>
 
@@ -115,23 +109,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.jboss.arquillian.selenium</groupId>
-                <artifactId>selenium-bom</artifactId>
-                <version>${version.selenium}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${version.arquillian-core}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.extension</groupId>
-                <artifactId>arquillian-drone-bom</artifactId>
-                <version>${version.arquillian-drone}</version>
+                <groupId>org.arquillian</groupId>
+                <artifactId>arquillian-universe</artifactId>
+                <version>${version.arquillian-universe}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -148,8 +128,8 @@
 
         <dependency>
             <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-6.0</artifactId>
-            <version>${version.jboss.javaee.6.spec}</version>
+            <artifactId>jboss-javaee-7.0</artifactId>
+            <version>${version.jboss.javaee.7.spec}</version>
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
@@ -167,36 +147,36 @@
 
         <!-- Dependencies for testing -->
         <dependency>
+            <groupId>org.arquillian.universe</groupId>
+            <artifactId>arquillian-testng</artifactId>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.arquillian.universe</groupId>
+            <artifactId>arquillian-graphene</artifactId>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.9.10</version>
+            <version>6.13.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.testng</groupId>
-            <artifactId>arquillian-testng-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.graphene</groupId>
-            <artifactId>graphene-webdriver</artifactId>
-            <version>${version.arquillian.graphene}</version>
-            <type>pom</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.extension</groupId>
-            <artifactId>arquillian-drone-webdriver-depchain</artifactId>
-            <type>pom</type>
-            <scope>test</scope>
-        </dependency>
+       
+       <!-- necessary for Selenium -->
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
             <version>1.4.01</version>
             <scope>test</scope>
         </dependency>
-        
+        <dependency>
+        	<groupId>com.google.guava</groupId>
+        	<artifactId>guava</artifactId>
+        	<version>21.0</version>
+      </dependency>
     </dependencies>
 
     <build>
@@ -238,12 +218,12 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.5</version>
+                    <version>3.5.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>1.1.0.Alpha7</version>
+                    <version>1.2.1.Final</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -324,12 +304,12 @@
         </profile>
 
         <profile>
-            <id>wildfly-remote-8-2</id>
+            <id>wildfly-remote</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.wildfly</groupId>
+                    <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>${version.wildfly-8-2}</version>
+                    <version>${version.wildfly-container}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -339,7 +319,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <systemProperties>
-                                <arquillian.launch>wildfly-remote-8-2</arquillian.launch>
+                                <arquillian.launch>wildfly-remote</arquillian.launch>
                             </systemProperties>
                         </configuration>
                     </plugin>
@@ -347,12 +327,12 @@
             </build>
         </profile>
         <profile>
-            <id>wildfly-managed-8-2</id>
+            <id>wildfly-managed</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.wildfly</groupId>
+                    <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <version>${version.wildfly-8-2}</version>
+                    <version>${version.wildfly-container}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -372,7 +352,7 @@
                                         <artifactItem>
                                             <groupId>org.wildfly</groupId>
                                             <artifactId>wildfly-dist</artifactId>
-                                            <version>${version.wildfly-8-2}</version>
+                                            <version>${version.wildfly}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -386,10 +366,10 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <environmentVariables>
-                                <JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly-8-2}</JBOSS_HOME>
+                                <JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly}</JBOSS_HOME>
                             </environmentVariables>
                             <systemProperties>
-                                <arquillian.launch>wildfly-managed-8-2</arquillian.launch>
+                                <arquillian.launch>wildfly-managed</arquillian.launch>
                             </systemProperties>
                         </configuration>
                     </plugin>
